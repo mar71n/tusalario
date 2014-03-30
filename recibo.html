@@ -83,12 +83,15 @@ function crearJson(){
     var losinput0 = document.getElementsByClassName("columna0");
     var largo = losinput0.length;
     var col0 = new Array();
+    var inps0 = 0;
     for (inps=0 ; inps < largo; inps++){
         if (losinput0[inps].tagName == "INPUT"){
             //console.debug(losinput0[inps].checked);
-            col0[inps]=losinput0[inps].checked;
+            col0[inps0]=losinput0[inps].checked;
+            inps0++;
         }
     }
+    localStorage["col0"]=col0;
     console.debug(col0);
     
 }
