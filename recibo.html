@@ -1,0 +1,68 @@
+<html>
+<head>
+<style>
+input[type="text"]
+{
+    background: transparent;
+    // border: none;
+}
+input.columna0{
+    width: 50px
+}
+table {
+    background: url(Recibo_en_Blanco.png) transparent no-repeat 0 0; 
+    background-size: cover; 
+    font-size: 22px; 
+    width: 640px; 
+    height: 480px; 
+    border: 1px solid black; 
+    color: red; 
+    text-align: center; 
+}
+th{
+    height: 380px;
+}
+</style>
+<script language="javascript" type="text/javascript"> 
+function runTotal(myForm) { 
+    //el código va aquí //declara las variables y asigna box1 y box2. 
+    var form_field1 = Number(myForm.box1.value); 
+    var form_field2 = Number(myForm.box2.value); 
+    //add the variables and update the total field value with the result. 
+    myForm.total.value = form_field1 + form_field2; 
+} 
+function ponerTabla(){
+    var columnas = 6;
+    var filas = 14;
+    var laTabla = '';
+    var primerfila = '<tr>';
+    for (var c = 0; c < columnas; c++){
+        primerfila = primerfila + '<th>titulo'+ (c + 1) + '</th>';
+    }
+    laTabla = '';
+    for (var f = 0; f < filas; f++){
+        laTabla = laTabla + '<tr>';
+        for (var c = 0; c < columnas; c++){
+            laTabla = laTabla +  ' <td> <input type="text" class="columna' + c + '"/>  </td>';
+        }
+        laTabla = laTabla +  '<tr>';
+    }
+    primerfila = primerfila + "</th></tr>";
+    laTabla = '<table >' + primerfila + laTabla + '</table>';
+    document.write(laTabla);
+}
+</script> </head>
+<body>
+<form id="recibo">
+<script>ponerTabla();</script>
+</form>
+
+<form>
+<input type=text size=3 maxlength=3 name="box1"> 
+<input type=text size=3 maxlength=3 name="box2"> 
+<input type=text size=3 maxlength=3 name="total"> 
+<input type="button" onClick="runTotal(this.form)" value="Calculate Running Total"> </form>
+</form>
+
+</body>
+</html>
