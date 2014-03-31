@@ -7,7 +7,7 @@ table {
     font-size: 22px; 
     width: 640px; 
     height: 480px; 
-    border: 1px solid black; 
+    border: none; 
     color: red; 
     text-align: center; 
 }
@@ -60,7 +60,7 @@ function runTotal(myForm) {
 } 
 function ponerTabla(){
     var columnas = 7;
-    var filas = 14;
+    var filas = 18;
     var laTabla = '';
     var primerfila = '<tr>';
     for (var c = 0; c < columnas; c++){
@@ -103,8 +103,10 @@ function grabar(){
 }
 </script> </head>
 <body>
+<input type="button" onClick="alert('Recuperar')" value="Recuperar recibo">
 <form id="recibo">
 <script>ponerTabla();</script>
+<p></p>
 <input type="button" onClick="grabar()" value="Grabar recibo">
 <input type="reset" value="Limpiar recibo">
 </form>
