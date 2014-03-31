@@ -82,17 +82,21 @@ function ponerTabla(){
 function grabarColumna(columna){
     var losinputs = document.getElementsByClassName("columna" + columna);
     var largo = losinputs.length;
-    var col0 = new Array();
+    var coln = new Array();
     var inps0 = 0;
     for (inps=0 ; inps < largo; inps++){
         if (losinputs[inps].tagName == "INPUT"){
             //console.debug(losinputs[inps].checked);
-            col0[inps0]=losinputs[inps].checked;
+            if(losinputs[inps].checked){
+                coln[inps0]=losinputs[inps].checked;
+            }else{
+                coln[inps0]=losinputs[inps].value;
+            }
             inps0++;
         }
     }
-    localStorage["col0"]=col0;
-    console.debug(col0);
+    localStorage["col"+columna]=coln;
+    console.debug(coln);
 }
 </script> </head>
 <body>
