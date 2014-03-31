@@ -86,7 +86,6 @@ function grabarColumna(columna){
     var inps0 = 0;
     for (inps=0 ; inps < largo; inps++){
         if (losinputs[inps].tagName == "INPUT"){
-            //console.debug(losinputs[inps].checked);
             if(losinputs[inps].checked){
                 coln[inps0]=losinputs[inps].checked;
             }else{
@@ -96,20 +95,17 @@ function grabarColumna(columna){
         }
     }
     localStorage["col"+columna]=coln;
-    console.debug(coln);
+}
+function grabar(){
+    for (k=0; k < 7; k++){
+        grabarColumna(k);
+    }
 }
 </script> </head>
 <body>
 <form id="recibo">
 <script>ponerTabla();</script>
+<input type="button" onClick="grabar()" value="Grabar recibo">
 </form>
-
-<form>
-<input type=text size=3 maxlength=3 name="box1"> 
-<input type=text size=3 maxlength=3 name="box2"> 
-<input type=text size=3 maxlength=3 name="total"> 
-<input type="button" onClick="runTotal(this.form)" value="Calculate Running Total"> </form>
-</form>
-
 </body>
 </html>
