@@ -79,21 +79,20 @@ function ponerTabla(){
     laTabla = '<table >' + primerfila + laTabla + '</table>';
     document.write(laTabla);
 }
-function grabarColumna(){
-    var losinput0 = document.getElementsByClassName("columna0");
-    var largo = losinput0.length;
+function grabarColumna(columna){
+    var losinputs = document.getElementsByClassName("columna" + columna);
+    var largo = losinputs.length;
     var col0 = new Array();
     var inps0 = 0;
     for (inps=0 ; inps < largo; inps++){
-        if (losinput0[inps].tagName == "INPUT"){
-            //console.debug(losinput0[inps].checked);
-            col0[inps0]=losinput0[inps].checked;
+        if (losinputs[inps].tagName == "INPUT"){
+            //console.debug(losinputs[inps].checked);
+            col0[inps0]=losinputs[inps].checked;
             inps0++;
         }
     }
     localStorage["col0"]=col0;
     console.debug(col0);
-    
 }
 </script> </head>
 <body>
