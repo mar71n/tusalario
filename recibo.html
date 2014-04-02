@@ -51,6 +51,59 @@ input.columna6{
 }
 </style>
 <script language="javascript" type="text/javascript"> 
+var recibo = {};
+recibo = (function(){
+    // API publico
+    return {
+        // ponerTabla
+        ponerTabla: function (){
+            var columnas = 7;
+            var filas = 18;
+            var laTabla = '';
+            var primerfila = '<tr>';
+            for (var c = 0; c < columnas; c++){
+                primerfila = primerfila + '<th> </th>';
+            }
+            laTabla = '';
+            for (var f = 0; f < filas; f++){
+                laTabla = laTabla + '<tr>';
+                laTabla = laTabla +  ' <td class="columna0"> <input type="checkbox" class="columna0"/>  </td>';
+                for (var c = 1; c < columnas; c++){
+                    laTabla = laTabla +  ' <td> <input type="text" class="columna' + c + '"/>  </td>';
+                }
+                laTabla = laTabla +  '<tr>';
+            }
+            primerfila = primerfila + "</th></tr>";
+            laTabla = '<table >' + primerfila + laTabla + '</table>';
+            document.write(laTabla);
+        },
+        // grabarColumna
+        grabarColumna: function (columna){
+            var losinputs = document.getElementsByClassName("columna" + columna);
+            var largo = losinputs.length;
+            var coln = new Array();
+            var inps0 = 0;
+            for (inps=0 ; inps < largo; inps++){
+                if (losinputs[inps].tagName == "INPUT"){
+                    if(losinputs[inps].checked){
+                        coln[inps0]=losinputs[inps].checked;
+                    }else{
+                        coln[inps0]=losinputs[inps].value;
+                    }
+                    inps0++;
+                }
+            }
+            localStorage["col"+columna]=coln;
+        },
+        // grabar
+        grabar: function (){
+            for (k=0; k < 7; k++){
+                grabarColumna(k);
+            }
+        }
+
+    }
+}())
 function runTotal(myForm) { 
     //el código va aquí //declara las variables y asigna box1 y box2. 
     var form_field1 = Number(myForm.box1.value); 
