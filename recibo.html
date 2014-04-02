@@ -53,12 +53,15 @@ input.columna6{
 <script language="javascript" type="text/javascript"> 
 var recibo = {};
 recibo = (function(){
+    // privadas
+    var mostrarFilas = 18;
+    var mostrarColumnas = 7;
     // API publico
     return {
         // ponerTabla
         ponerTabla: function (){
-            var columnas = 7;
-            var filas = 18;
+            var columnas = mostrarColumnas;
+            var filas = mostrarFilas;
             var laTabla = '';
             var primerfila = '<tr>';
             for (var c = 0; c < columnas; c++){
@@ -67,9 +70,9 @@ recibo = (function(){
             laTabla = '';
             for (var f = 0; f < filas; f++){
                 laTabla = laTabla + '<tr>';
-                laTabla = laTabla +  ' <td class="columna0"> <input type="checkbox" class="columna0"/>  </td>';
+                laTabla = laTabla +  ' <td class="columna0"> <input type="checkbox" class="columna0 fila' + f + '"/>  </td>';
                 for (var c = 1; c < columnas; c++){
-                    laTabla = laTabla +  ' <td> <input type="text" class="columna' + c + '"/>  </td>';
+                    laTabla = laTabla +  ' <td> <input type="text" class="columna' + c + ' fila' + f + '"/>  </td>';
                 }
                 laTabla = laTabla +  '<tr>';
             }
@@ -97,8 +100,8 @@ recibo = (function(){
         },
         // grabar
         grabar: function (){
-            for (k=0; k < 7; k++){
-                grabarColumna(k);
+            for (k=0; k < mostrarColumnas; k++){
+                this.grabarColumna(k);
             }
         }
 
