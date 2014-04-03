@@ -120,8 +120,32 @@ recibo = (function(){
             for (f=0; f < mostrarFilas; f++){
                 this.grabarFila(f);
             }
+        },
+        // recuperarFila
+        recuperarFila: function(fila){
+            var losinputs = document.getElementsByClassName("fila" + fila);
+            var filn = new Array();
+            filn = localStorage.getItem("fila" + fila).split(",");
+            console.debug(filn);
+            // remunerativo/no remunerativo: columna 0
+            document.getElementsByClassName("fila" + fila + " columna0")[0].checked = filn[0];
+            // haberes: columan 1 2 3
+            document.getElementsByClassName("fila" + fila + " columna1")[0].value   = filn[1];
+            document.getElementsByClassName("fila" + fila + " columna2")[0].value   = filn[2];
+            document.getElementsByClassName("fila" + fila + " columna3")[0].value   = filn[3];
+            // descuentos: columan 4 5 6
+            document.getElementsByClassName("fila" + fila + " columna4")[0].value   = filn[4];
+            document.getElementsByClassName("fila" + fila + " columna5")[0].value   = filn[5];
+            document.getElementsByClassName("fila" + fila + " columna6")[0].value   = filn[6];
+            // grabar
+            localStorage["fila"+fila]=filn;
+        },
+        // recuperar
+        recuperar: function (){
+            for (f=0; f < mostrarFilas; f++){
+                this.recuperarFila(f);
+            }
         }
-
     }
 }())
 function runTotal(myForm) { 
@@ -133,7 +157,7 @@ function runTotal(myForm) {
 } 
 </script> </head>
 <body>
-<input type="button" onClick="alert('Recuperar')" value="Recuperar recibo">
+<input type="button" onClick="recibo.recuperar()" value="Recuperar recibo">
 <form id="recibo">
 <script>recibo.ponerTabla();</script>
 <p></p>
