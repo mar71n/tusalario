@@ -162,20 +162,20 @@ recibo = (function(){
                     console.debug(descripcion + " ....... " + valor);
                     if (! (descripcion.length > 0)){
                         haberes = false;
-                        xj = j ;
-                        j++;
-                    }
-                    if(haberes){
-                        // haberes: columan 1 2 3
-                        document.getElementsByClassName("fila" + j + " columna1")[0].value   = descripcion;
-                        document.getElementsByClassName("fila" + j + " columna2")[0].value   = valor;
-                        //document.getElementsByClassName("fila" + fila + " columna3")[0].value   = filn[3];
-                    }
-                    if(haberes == false){
-                        // descuentos: columan 4 5 6
-                        document.getElementsByClassName("fila" + (j-xj) + " columna4")[0].value   = descripcion;
-                        document.getElementsByClassName("fila" + (j-xj) + " columna5")[0].value   = valor;
-                        //document.getElementsByClassName("fila" + fila + " columna6")[0].value   = filn[6];
+                        xj = j + 1 ;
+                    }else{
+                        if(haberes){
+                            // haberes: columan 1 2 3
+                            document.getElementsByClassName("fila" + j + " columna1")[0].value   = descripcion;
+                            document.getElementsByClassName("fila" + j + " columna2")[0].value   = valor;
+                            //document.getElementsByClassName("fila" + fila + " columna3")[0].value   = filn[3];
+                        }
+                        if(haberes == false){
+                            // descuentos: columan 4 5 6
+                            document.getElementsByClassName("fila" + (j-xj) + " columna4")[0].value   = descripcion;
+                            document.getElementsByClassName("fila" + (j-xj) + " columna5")[0].value   = valor;
+                            //document.getElementsByClassName("fila" + fila + " columna6")[0].value   = filn[6];
+                        }
                     }
             }
         }
