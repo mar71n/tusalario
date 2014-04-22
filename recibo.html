@@ -155,7 +155,7 @@ recibo = (function(){
             var lineas = document.getElementsByTagName('div');
             haberes = true;
             for (j=0 ; j < lineas.length + 1; j++){
-                    var losinputs = document.getElementsByClassName("fila" + j);
+                    // var losinputs = document.getElementsByClassName("fila" + j);
                     //console.debug(lineas.item(j).childNodes[0]);
                     var valor = document.getElementsByTagName('div').item(j+1).childNodes[0].textContent.match(/[-]*[0-9]+\.[0-9]+/i);
                     var descripcion = document.getElementsByTagName('div').item(j+1).childNodes[0].textContent.replace(/[-]*[0-9]+\.[0-9]+/i,"");
@@ -163,19 +163,18 @@ recibo = (function(){
                     if (! (descripcion.length > 0)){
                         haberes = false;
                         xj = j + 1 ;
-                    }else{
-                        if(haberes){
-                            // haberes: columan 1 2 3
-                            document.getElementsByClassName("fila" + j + " columna1")[0].value   = descripcion;
-                            document.getElementsByClassName("fila" + j + " columna2")[0].value   = valor;
-                            //document.getElementsByClassName("fila" + fila + " columna3")[0].value   = filn[3];
-                        }
-                        if(haberes == false){
-                            // descuentos: columan 4 5 6
-                            document.getElementsByClassName("fila" + (j-xj) + " columna4")[0].value   = descripcion;
-                            document.getElementsByClassName("fila" + (j-xj) + " columna5")[0].value   = valor;
-                            //document.getElementsByClassName("fila" + fila + " columna6")[0].value   = filn[6];
-                        }
+                    }
+                    if(haberes && (descripcion.length > 0)){
+                        // haberes: columan 1 2 3
+                        document.getElementsByClassName("fila" + j + " columna1")[0].value   = descripcion;
+                        document.getElementsByClassName("fila" + j + " columna2")[0].value   = valor;
+                        //document.getElementsByClassName("fila" + fila + " columna3")[0].value   = filn[3];
+                    }
+                    if(haberes == false  && descripcion.length > 0){
+                        // descuentos: columan 4 5 6
+                        document.getElementsByClassName("fila" + (j-xj) + " columna4")[0].value   = descripcion;
+                        document.getElementsByClassName("fila" + (j-xj) + " columna5")[0].value   = valor;
+                        //document.getElementsByClassName("fila" + fila + " columna6")[0].value   = filn[6];
                     }
             }
         }
