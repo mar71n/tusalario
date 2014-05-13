@@ -2,7 +2,7 @@
 <head>
 <style>
 table {
-    background: url(Recibo_en_Blanco.png) transparent no-repeat 22 0; 
+    background: url(NORecibo_en_Blanco.png) transparent no-repeat 22 0; 
     background-size: cover; 
     font-size: 22px; 
     width: 640px; 
@@ -122,6 +122,8 @@ recibo = (function(){
             for (f=0; f < mostrarFilas; f++){
                 this.grabarFila(f,clave);
             }
+            // refresco la botonera
+            recibo.ponerRecibos();
         },
         // recuperarFila
         recuperarFila: function(fila,clave){
@@ -209,11 +211,15 @@ recibo = (function(){
             return clavestodas;
         },
         ponerRecibos:function(){
+            document.getElementById("botonera_recibos").innerHTML = "";
             losrecibos = this.listaRecibos();
             cuantos = losrecibos.length;
+            var losbotones = "";
             for(k = 0; k < cuantos; k++){
-                document.write("<input type='button' onClick='recibo.recuperar(" + losrecibos[k] + ")' value='" + losrecibos[k] + "'>");
+                //document.write("<input type='button' onClick='recibo.recuperar(" + losrecibos[k] + ")' value='" + losrecibos[k] + "'>");
+                losbotones = losbotones + " <input type='button' onClick='recibo.recuperar(" + losrecibos[k] + ")' value='" + losrecibos[k] + "'> ";
             }
+            document.getElementById("botonera_recibos").innerHTML = losbotones;
         }
     }
 }())
@@ -229,7 +235,9 @@ function runTotal(myForm) {
 }()) 
 </script> </head>
 <body>
+<div id="botonera_recibos"> 
 <script>recibo.ponerRecibos();</script>
+</div>
 <form id="recibo">
 <script>recibo.ponerTabla();</script>
 <p></p>
