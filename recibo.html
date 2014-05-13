@@ -145,9 +145,9 @@ recibo = (function(){
             document.getElementsByClassName("fila" + fila + " columna6")[0].value   = filn[6];
         },
         // recuperar
-        recuperar: function (){
+        recuperar: function (clave){
             // aca, previo a recuperar tengo que elegir entre los grabados
-            clave = document.getElementById("annio").value + document.getElementById("mes").value + document.getElementById("numero").value;
+            //clave = document.getElementById("annio").value + document.getElementById("mes").value + document.getElementById("numero").value;
             for (f=0; f < mostrarFilas; f++){
                 this.recuperarFila(f,clave);
             }
@@ -179,11 +179,41 @@ recibo = (function(){
                     //document.getElementsByClassName("fila" + fila + " columna6")[0].value   = filn[6];
                 }
             }
-        }
+        },
         // lista de recibos grabados
         listaRecibos: function(){
-            nclaves = localStorage.length;
-            
+            var nclaves = localStorage.length;
+            var claves = new Array();
+            var kn = 0;
+            for (kls = 0 ; kls < nclaves; kls++){
+                clave = localStorage.key(kls);
+                clave = clave.substr(0,8);
+                if (clave==clave.match(/20[0-9]{2}[01][0-9][012][0-9]/)){
+                    claves[kn]=clave;
+                    kn++;
+                }
+            }
+            claves.sort();
+            nclaves = claves.length;
+            var clave_0 = "";
+            var clavestodas = new Array();
+            kn = 0;
+            for (kls = 0 ; kls < nclaves; kls++){
+                if(claves[kls] != clave_0){
+                    clavestodas[kn]=claves[kls]
+                    kn++;
+                    clave_0 = claves[kls];
+                    console.debug(claves[kls]);
+                }
+            }
+            return clavestodas;
+        },
+        ponerRecibos:function(){
+            losrecibos = this.listaRecibos();
+            cuantos = losrecibos.length;
+            for(k = 0; k < cuantos; k++){
+                document.write("<input type='button' onClick='recibo.recuperar(" + losrecibos[k] + ")' value='" + losrecibos[k] + "'>");
+            }
         }
     }
 }())
@@ -193,10 +223,13 @@ function runTotal(myForm) {
     var form_field2 = Number(myForm.box2.value); 
     //add the variables and update the total field value with the result. 
     myForm.total.value = form_field1 + form_field2; 
-} 
+}
+(function(){
+    //recibo.listaRecibos();
+}()) 
 </script> </head>
 <body>
-<input type="button" onClick="recibo.recuperar()" value="Recuperar recibo">
+<script>recibo.ponerRecibos();</script>
 <form id="recibo">
 <script>recibo.ponerTabla();</script>
 <p></p>
