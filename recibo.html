@@ -153,6 +153,10 @@ recibo = (function(){
             for (f=0; f < mostrarFilas; f++){
                 this.recuperarFila(f,clave);
             }
+            // pongo en los desplegables la clave
+            document.getElementById("annio").value = clave.toString().substr(0,4);
+            document.getElementById("mes").value = clave.toString().substr(4,2);
+            document.getElementById("numero").value = clave.toString().substr(6,2);
         },
         // pegarFilas
         pegarFilas: function(){
@@ -205,7 +209,7 @@ recibo = (function(){
                     clavestodas[kn]=claves[kls]
                     kn++;
                     clave_0 = claves[kls];
-                    console.debug(claves[kls]);
+                    //console.debug(claves[kls]);
                 }
             }
             return clavestodas;
