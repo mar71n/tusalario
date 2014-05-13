@@ -121,13 +121,22 @@ recibo = (function(){
             elannio = document.getElementById("annio").value;
             elmes = document.getElementById("mes").value;
             elid = document.getElementById("numero").value;
+            // si no esta bien formada no graba
             if (elannio == "0000" || elmes == "00" || elid == "00"){
                 alert("Contrele el año, mes, id");
                 return false;
             }
+            // si ya existe pregunto
+            existen = this.listaRecibos();
             clave = elannio + elmes + elid;
-            for (f=0; f < mostrarFilas; f++){
-                this.grabarFila(f,clave);
+            sino = true;
+            if(existen.indexOf(clave) >= 0){
+                sino = confirm("Ya existe. Graba igual?");
+            }
+            if(sino){
+                for (f=0; f < mostrarFilas; f++){
+                    this.grabarFila(f,clave);
+                }
             }
             // refresco la botonera
             recibo.ponerRecibos();
