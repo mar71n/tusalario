@@ -118,7 +118,14 @@ recibo = (function(){
         // grabar
         grabar: function (){
             // aca pongo la clave de recibo: año.mes.numero (puede haber mas de uno en un mes, SAC, aumentos, etc.)
-            clave = document.getElementById("annio").value + document.getElementById("mes").value + document.getElementById("numero").value;
+            elannio = document.getElementById("annio").value;
+            elmes = document.getElementById("mes").value;
+            elid = document.getElementById("numero").value;
+            if (elannio == "0000" || elmes == "00" || elid == "00"){
+                alert("Contrele el año, mes, id");
+                return false;
+            }
+            clave = elannio + elmes + elid;
             for (f=0; f < mostrarFilas; f++){
                 this.grabarFila(f,clave);
             }
@@ -246,11 +253,13 @@ function runTotal(myForm) {
 <script>recibo.ponerTabla();</script>
 <p></p>
 <select id="annio">
+    <option value="0000" selected="selected">Año</option>
     <option value="2012">2012</option>
     <option value="2013">2013</option>
-    <option value="2014" selected="selected">2014</option>
+    <option value="2014">2014</option>
 </select>
 <select id="mes">
+    <option value="00" selected="selected">Mes</option>
     <option value="01">01</option>
     <option value="02">02</option>
     <option value="03">03</option>
@@ -265,6 +274,7 @@ function runTotal(myForm) {
     <option value="12">12</option>
 </select>
 <select id="numero">
+    <option value="00" selected="selected">ID</option>
     <option value="01">01</option>
     <option value="02">02</option>
     <option value="03">03</option>
