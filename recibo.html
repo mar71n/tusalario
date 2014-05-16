@@ -237,7 +237,7 @@ recibo = (function(){
             var losbotones = "";
             for(k = 0; k < cuantos; k++){
                 //document.write("<input type='button' onClick='recibo.recuperar(" + losrecibos[k] + ")' value='" + losrecibos[k] + "'>");
-                losbotones = losbotones + " <input type='button' onClick='recibo.recuperar(" + losrecibos[k] + ")' value='" + losrecibos[k] + "'> ";
+                losbotones = losbotones + " <input type='button' id='" + losrecibos[k] + "' onClick='recibo.recuperar(" + losrecibos[k] + ")' value='" + losrecibos[k] + "'> ";
             }
             document.getElementById("botonera_recibos").innerHTML = losbotones;
         }
