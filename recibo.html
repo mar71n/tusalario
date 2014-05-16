@@ -176,13 +176,13 @@ recibo = (function(){
         },
         // pegarFilas
         pegarFilas: function(){
-            var lineas = document.getElementsByTagName('div');
+            var lineas = document.getElementById('pegado');
             haberes = true;
-            for (j=0 ; j < lineas.length + 1; j++){
+            for (j=1 ; j < lineas.childNodes.length ; j++){
                 // var losinputs = document.getElementsByClassName("fila" + j);
-                //console.debug(lineas.item(j).childNodes[0]);
-                var valor = document.getElementsByTagName('div').item(j+1).childNodes[0].textContent.match(/[-]*[0-9]+\.[0-9]+/i);
-                var descripcion = document.getElementsByTagName('div').item(j+1).childNodes[0].textContent.replace(/[-]*[0-9]+\.[0-9]+/i,"");
+                // console.debug(lineas.childNodes[j].textContent);
+                var valor = lineas.childNodes[j].textContent.match(/[-]*[0-9]+\.[0-9]+/i);
+                var descripcion = lineas.childNodes[j].textContent.replace(/[-]*[0-9]+\.[0-9]+/i,"");
                 //console.debug(descripcion + " ....... " + valor);
                 if (! (descripcion.length > 0)){
                     haberes = false;
@@ -190,8 +190,8 @@ recibo = (function(){
                 }
                 if(haberes && (descripcion.length > 0)){
                     // haberes: columan 1 2 3
-                    document.getElementsByClassName("fila" + j + " columna1")[0].value   = descripcion;
-                    document.getElementsByClassName("fila" + j + " columna2")[0].value   = valor;
+                    document.getElementsByClassName("fila" + (j-1) + " columna1")[0].value   = descripcion;
+                    document.getElementsByClassName("fila" + (j-1) + " columna2")[0].value   = valor;
                     //document.getElementsByClassName("fila" + fila + " columna3")[0].value   = filn[3];
                 }
                 if(haberes == false  && descripcion.length > 0){
