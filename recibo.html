@@ -182,6 +182,9 @@ recibo = (function(){
             document.getElementById("annio").value = clave.toString().substr(0,4);
             document.getElementById("mes").value = clave.toString().substr(4,2);
             document.getElementById("numero").value = clave.toString().substr(6,2);
+            this.sumarHaberes();
+            this.sumarDescuentos();
+            this.sumarNeto();
         },
         // pegarFilas
         pegarFilas: function(){
@@ -210,6 +213,7 @@ recibo = (function(){
                     //document.getElementsByClassName("fila" + fila + " columna6")[0].value   = filn[6];
                 }
             }
+            document.getElementById("pegado").innerText = "Pegue desde Haberes asta el último importe AQUI";
         },
         // lista de recibos grabados
         listaRecibos: function(){
@@ -246,9 +250,46 @@ recibo = (function(){
             var losbotones = "";
             for(k = 0; k < cuantos; k++){
                 //document.write("<input type='button' onClick='recibo.recuperar(" + losrecibos[k] + ")' value='" + losrecibos[k] + "'>");
-                losbotones = losbotones + " <input type='button' id='" + losrecibos[k] + "' onClick='recibo.recuperar(" + losrecibos[k] + ")' value='" + losrecibos[k] + "'> ";
+                losbotones = losbotones + " <input type='button' id='" + losrecibos[k] + "' onClick='recibo.recuperar(" + losrecibos[k] + ")' value='" + losrecibos[k] + "\n Tot:'> ";
             }
             document.getElementById("botonera_recibos").innerHTML = losbotones;
+        },
+        // sumar haberes
+        sumarHaberes:function(){
+            var tot = 0;
+            var col2 = document.getElementsByClassName("columna2");
+            var tot_c2 = 0;
+            for (var j = 0; j < mostrarFilas; j++){
+                tot_c2 += Number(col2[j].value);
+            }
+            var col3 = document.getElementsByClassName("columna3");
+            var tot_c3 = 0;
+            for (j = 0; j < mostrarFilas; j++){
+                tot_c3 += Number(col3[j].value);
+            }
+            tot = tot_c2 + tot_c3;
+            document.getElementById("haberes").innerText = tot;
+            return tot;
+        },
+        // sumar descuentos
+        sumarDescuentos:function(){
+            var tot = 0;
+            var col2 = document.getElementsByClassName("columna5");
+            var tot_c2 = 0;
+            for (var j = 0; j < mostrarFilas; j++){
+                tot_c2 += Number(col2[j].value);
+            }
+            var col3 = document.getElementsByClassName("columna6");
+            var tot_c3 = 0;
+            for (j = 0; j < mostrarFilas; j++){
+                tot_c3 += Number(col3[j].value);
+            }
+            tot = tot_c2 + tot_c3;
+            document.getElementById("descuentos").innerText = tot;
+            return tot;
+        },
+        sumarNeto:function(){
+            document.getElementById("neto").innerText = Number(document.getElementById("haberes").innerText) - Number(document.getElementById("descuentos").innerText);
         }
     }
 }())
@@ -267,6 +308,9 @@ function runTotal(myForm) {
 <div id="botonera_recibos"> 
 <script>recibo.ponerRecibos();</script>
 </div>
+<div id="haberes"></div>
+<div id="descuentos"></div>
+<div id="neto"></div>
 <form id="recibo">
 <script>recibo.ponerTabla();</script>
 <p></p>
