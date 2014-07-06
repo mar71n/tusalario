@@ -18,7 +18,7 @@
 }
 </style>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script> 
-<script language="javascript" type="text/javascript">
+<script type="text/javascript">
    google.load("visualization", "1", {packages:["corechart"]});
    google.setOnLoadCallback(dibujarGrafico);
    function dibujarGrafico() {
@@ -41,7 +41,7 @@
      ]);
      var options = {
        title: '% salario de canasta'
-     }
+     };
      // alert(document.getElementsByClassName("fila0 columna1")[0].value);
      // Dibujar el gráfico
      new google.visualization.LineChart(
@@ -69,7 +69,7 @@ function ponerTabla (){
     }
     primerfila = primerfila + "</th></tr>";
     laTabla = '<table >' + primerfila + laTabla + '</table>';
-    laTabla = '<table> <tr><td><div> Mes:</div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>'
+    laTabla = '<table> <tr><td><div> Mes:</div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
     document.write(laTabla);
 }
 function ponerCanasta(canasta){
@@ -104,7 +104,7 @@ function habilitar(sino){
     }
 }
 (function(){
-}()) 
+}());
 </script>
 <h2>Salario vs. Canasta</h2>
 <div class="instrucciones">
@@ -127,15 +127,15 @@ ponerSalarios(listador);
 ponerCanasta(canasta3);
 </script>
 <p>
-    <input id='b1' type='button' value='Listador' onclick='ponerSalarios(listador); marcar("b1")'>
-    <input id='b2' type='button' value='Contratado' onclick='ponerSalarios(contratado); marcar("b2")'>
-    <input id='b3' type='button' value='Planta Adm.' onclick='ponerSalarios(administrativo); marcar("b3")'>
-    <input id='b4' type='button' value='Personalizado' onclick='habilitar(true); marcar("b4")'>
+    <input id='b1' type='button' value='Listador' onclick='ponerSalarios(listador); marcar("b1");'>
+    <input id='b2' type='button' value='Contratado' onclick='ponerSalarios(contratado); marcar("b2");'>
+    <input id='b3' type='button' value='Planta Adm.' onclick='ponerSalarios(administrativo); marcar("b3");'>
+    <input id='b4' type='button' value='Personalizado' onclick='habilitar(true); marcar("b4");'>
 <p>
-    <input id='c1' type='button' value='Canasta 3' title='Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda.' onclick='ponerCanasta(canasta3); marcarC("c1")'>
+    <input id='c1' type='button' value='Canasta 3' title='Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda.' onclick='ponerCanasta(canasta3); marcarC("c1");'>
     <input id='c2' type='button' value='Canasta 5Bis' title='Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, 
-activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.' onclick='ponerCanasta(canasta5bis); marcarC("c2")'>
-<p><input type='button' value='Graficar' onclick='dibujarGrafico()'>
+activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.' onclick='ponerCanasta(canasta5bis); marcarC("c2");'>
+<p><input type='button' value='Graficar' onclick='dibujarGrafico();'>
 <script>
 marcar("b1");
 marcarC("c1");
