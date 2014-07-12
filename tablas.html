@@ -35,6 +35,27 @@
    //privada
    //publica
    return {
+        ponerTabla: function (){
+            var columnas = 12;
+            var filas = 2;
+            var laTabla = '';
+            var primerfila = '<tr>';
+            var meses=["jun","jul","ago","set","oct","nov","dic","ENE","FEB","MAR","ABR","MAY"];
+            for (var c = 0; c < columnas; c++){
+                primerfila = primerfila + '<th> ' + meses[c] + ' </th>';
+            }
+            laTabla = '';
+            for (var f = 0; f < filas; f++){
+                laTabla = laTabla + '<tr>';
+                for (var c = 1; c <= columnas; c++){
+                    laTabla = laTabla +  '<td> <input type="text" class="celda columna' + c + ' fila' + f + '" disabled/>  </td>';
+                }
+            }
+            primerfila = primerfila + "</th></tr>";
+            laTabla = '<table >' + primerfila + laTabla + '</table>';
+            laTabla = '<table> <tr><td><div> Mes:</div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
+            document.write(laTabla);
+        }
    };
    })();
    datos = (function(){
@@ -79,27 +100,6 @@
    }
  </script> 
 <script>
-function ponerTabla (){
-    var columnas = 12;
-    var filas = 2;
-    var laTabla = '';
-    var primerfila = '<tr>';
-    var meses=["jun","jul","ago","set","oct","nov","dic","ENE","FEB","MAR","ABR","MAY"];
-    for (var c = 0; c < columnas; c++){
-        primerfila = primerfila + '<th> ' + meses[c] + ' </th>';
-    }
-    laTabla = '';
-    for (var f = 0; f < filas; f++){
-        laTabla = laTabla + '<tr>';
-        for (var c = 1; c <= columnas; c++){
-            laTabla = laTabla +  '<td> <input type="text" class="celda columna' + c + ' fila' + f + '" disabled/>  </td>';
-        }
-    }
-    primerfila = primerfila + "</th></tr>";
-    laTabla = '<table >' + primerfila + laTabla + '</table>';
-    laTabla = '<table> <tr><td><div> Mes:</div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
-    document.write(laTabla);
-}
 function ponerCanasta(canasta){
     ponerFila(canasta, "fila1");
 }
@@ -145,7 +145,7 @@ function habilitar(sino){
 </div>
 <form>
 <script>
-ponerTabla();
+tabla.ponerTabla();
 ponerSalarios(datos.listador);
 ponerCanasta(datos.canasta3);
 </script>
