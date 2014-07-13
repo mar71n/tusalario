@@ -93,7 +93,7 @@
                 var filaF=[['Texto', '% de la canasta']];
                 for(k=1; k<=columnas; k++){
                     valor = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[0].value) /parseInt(document.getElementsByClassName("columna"+k)[1].value)* 100).toFixed(2));
-                    filaF.push([meses[k], valor]);
+                    filaF.push([meses[k-1], valor]);
                 }
                 dataA.push(filaF);
             return dataA;
