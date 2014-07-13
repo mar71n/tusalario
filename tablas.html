@@ -29,6 +29,18 @@
    //privada
    //publica
    return {
+        dibujarGrafico: function(setDatos) {
+            // Tabla de datos: valores y etiquetas de la gráfica
+            var data = google.visualization.arrayToDataTable(setDatos);
+            var options = {
+            title: '% salario de canasta'
+            };
+            // Dibujar el gráfico
+            new google.visualization.LineChart(
+            //ColumnChart sería el tipo de gráfico a dibujar
+            document.getElementById('GraficoGoogleChart-ejemplo-1')
+            ).draw(data, options);
+        }
    };
    })();
    tabla = (function(){
@@ -80,18 +92,6 @@
         administrativo: [7221, 7221, 7821, 7821, 7821, 7821, 7821, 8821, 8621, 8621, 9233, 9233],
    };
    })();
-   function dibujarGrafico(setDatos) {
-     // Tabla de datos: valores y etiquetas de la gráfica
-     var data = google.visualization.arrayToDataTable(setDatos);
-     var options = {
-       title: '% salario de canasta'
-     };
-     // Dibujar el gráfico
-     new google.visualization.LineChart(
-     //ColumnChart sería el tipo de gráfico a dibujar
-       document.getElementById('GraficoGoogleChart-ejemplo-1')
-     ).draw(data, options);
-   }
  </script> 
 <script>
 function ponerCanasta(canasta){
@@ -125,7 +125,7 @@ function habilitar(sino){
         fila1[j].disabled = !sino;
     }
 }
-window.onload=function(){dibujarGrafico(tabla.generarData()[0]);};
+window.onload=function(){grafico.dibujarGrafico(tabla.generarData()[0]);};
 </script>
 <p class="titulo">Gráfico de Salario sobre Canasta</p>
 <div class="instrucciones">
@@ -151,7 +151,7 @@ ponerCanasta(datos.canasta3);
     <input id='c1' type='button' value='Canasta 3' title='Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda.' onclick='ponerCanasta(datos.canasta3); marcarC("c1");'>
     <input id='c2' type='button' value='Canasta 5Bis' title='Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, 
 activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.' onclick='ponerCanasta(datos.canasta5bis); marcarC("c2");'>
-<p><input type='button' value='Graficar' onclick='dibujarGrafico(tabla.generarData()[0]);'>
+<p><input type='button' value='Graficar' onclick='grafico.dibujarGrafico(tabla.generarData()[0]);'>
 <script>
 marcar("b1");
 marcarC("c1");
