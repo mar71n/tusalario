@@ -33,14 +33,14 @@
    })();
    tabla = (function(){
    //privada
+        var columnas = 12;
+        var filas = 2;
+        var meses=["jun","jul","ago","set","oct","nov","dic","ENE","FEB","MAR","ABR","MAY"];
    //publica
    return {
         ponerTabla: function (){
-            var columnas = 12;
-            var filas = 2;
             var laTabla = '';
             var primerfila = '<tr>';
-            var meses=["jun","jul","ago","set","oct","nov","dic","ENE","FEB","MAR","ABR","MAY"];
             for (var c = 0; c < columnas; c++){
                 primerfila = primerfila + '<th> ' + meses[c] + ' </th>';
             }
@@ -55,6 +55,16 @@
             laTabla = '<table >' + primerfila + laTabla + '</table>';
             laTabla = '<table> <tr><td><div> Mes:</div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
             document.write(laTabla);
+        },
+        generarData: function(){
+            var dataA = [];
+                var filaF=[['Texto', '% de la canasta']];
+                for(k=1; k<=columnas; k++){
+                    valor = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[0].value) /parseInt(document.getElementsByClassName("columna"+k)[1].value)* 100).toFixed(2));
+                    filaF.push([meses[k], valor]);
+                }
+                dataA.push(filaF);
+            return dataA;
         }
    };
    })();
@@ -69,29 +79,12 @@
         administrativo: [7221, 7221, 7821, 7821, 7821, 7821, 7821, 8821, 8621, 8621, 9233, 9233],
    };
    })();
-   google.setOnLoadCallback(dibujarGrafico);
-   function dibujarGrafico() {
+   function dibujarGrafico(setDatos) {
      // Tabla de datos: valores y etiquetas de la gráfica
-     // parseInt(document.getElementsByClassName("fila0 columna1")[0].value]
-     var data = google.visualization.arrayToDataTable([
-       ['Texto', '% de la canasta'],
-       ['jun', parseFloat((parseInt(document.getElementsByClassName("columna1")[0].value) /parseInt(document.getElementsByClassName("columna1")[1].value)* 100).toFixed(2))],
-       ['jul', parseFloat((parseInt(document.getElementsByClassName("columna2")[0].value) /parseInt(document.getElementsByClassName("columna2")[1].value)* 100).toFixed(2))],
-       ['ago', parseFloat((parseInt(document.getElementsByClassName("columna3")[0].value) /parseInt(document.getElementsByClassName("columna3")[1].value)* 100).toFixed(2))],
-       ['set', parseFloat((parseInt(document.getElementsByClassName("columna4")[0].value) /parseInt(document.getElementsByClassName("columna4")[1].value)* 100).toFixed(2))],
-       ['oct', parseFloat((parseInt(document.getElementsByClassName("columna5")[0].value) /parseInt(document.getElementsByClassName("columna5")[1].value)* 100).toFixed(2))],
-       ['nov', parseFloat((parseInt(document.getElementsByClassName("columna6")[0].value) /parseInt(document.getElementsByClassName("columna6")[1].value)* 100).toFixed(2))],
-       ['dic', parseFloat((parseInt(document.getElementsByClassName("columna7")[0].value) /parseInt(document.getElementsByClassName("columna7")[1].value)* 100).toFixed(2))],
-       ['ENE', parseFloat((parseInt(document.getElementsByClassName("columna8")[0].value) /parseInt(document.getElementsByClassName("columna8")[1].value)* 100).toFixed(2))],
-       ['FEB', parseFloat((parseInt(document.getElementsByClassName("columna9")[0].value) /parseInt(document.getElementsByClassName("columna9")[1].value)* 100).toFixed(2))],
-       ['MAR', parseFloat((parseInt(document.getElementsByClassName("columna10")[0].value)/parseInt(document.getElementsByClassName("columna10")[1].value)*100).toFixed(2))],
-       ['ABR', parseFloat((parseInt(document.getElementsByClassName("columna11")[0].value)/parseInt(document.getElementsByClassName("columna11")[1].value)*100).toFixed(2))],
-       ['MAY', parseFloat((parseInt(document.getElementsByClassName("columna12")[0].value)/parseInt(document.getElementsByClassName("columna12")[1].value)*100).toFixed(2))]
-     ]);
+     var data = google.visualization.arrayToDataTable(setDatos);
      var options = {
        title: '% salario de canasta'
      };
-     // alert(document.getElementsByClassName("fila0 columna1")[0].value);
      // Dibujar el gráfico
      new google.visualization.LineChart(
      //ColumnChart sería el tipo de gráfico a dibujar
@@ -131,8 +124,7 @@ function habilitar(sino){
         fila1[j].disabled = !sino;
     }
 }
-(function(){
-}());
+window.onload=function(){dibujarGrafico(tabla.generarData()[0]);};
 </script>
 <p class="titulo">Gráfico de Salario sobre Canasta</p>
 <div class="instrucciones">
@@ -158,7 +150,7 @@ ponerCanasta(datos.canasta3);
     <input id='c1' type='button' value='Canasta 3' title='Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda.' onclick='ponerCanasta(datos.canasta3); marcarC("c1");'>
     <input id='c2' type='button' value='Canasta 5Bis' title='Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, 
 activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.' onclick='ponerCanasta(datos.canasta5bis); marcarC("c2");'>
-<p><input type='button' value='Graficar' onclick='dibujarGrafico();'>
+<p><input type='button' value='Graficar' onclick='dibujarGrafico(tabla.generarData()[0]);'>
 <script>
 marcar("b1");
 marcarC("c1");
