@@ -49,8 +49,21 @@
         var columnas = 12;
         var filas = 2;
         var meses=["jun","jul","ago","set","oct","nov","dic","ENE","FEB","MAR","ABR","MAY"];
+        function ponerFila(lindatos,fila){
+            fila2 = document.getElementsByClassName(fila);
+            for(j=0; j<12; j++){
+                fila2[j].value=lindatos[j];
+            }
+        }
    //publica
    return {
+        ponerCanasta: function(canasta){
+            ponerFila(canasta, "fila1");
+        },
+        ponerSalarios: function(salarios){
+            habilitar(false);
+            ponerFila(salarios, "fila0");
+        },
         ponerTabla: function (){
             var laTabla = '';
             var primerfila = '<tr>';
@@ -95,19 +108,6 @@
    })();
  </script> 
 <script>
-function ponerCanasta(canasta){
-    ponerFila(canasta, "fila1");
-}
-function ponerSalarios(salarios){
-    habilitar(false);
-    ponerFila(salarios, "fila0");
-}
-function ponerFila(canasta,fila){
-    fila2 = document.getElementsByClassName(fila);
-    for(j=0; j<12; j++){
-        fila2[j].value=canasta[j];
-    }
-}
 function marcar(boton){
     document.getElementById("b1").style.backgroundColor = "";
     document.getElementById("b2").style.backgroundColor = "";
@@ -140,18 +140,18 @@ window.onload=function(){grafico.dibujarGrafico(tabla.generarData()[0]);};
 <form>
 <script>
 tabla.ponerTabla();
-ponerSalarios(datos.listador);
-ponerCanasta(datos.canasta3);
+tabla.ponerSalarios(datos.listador);
+tabla.ponerCanasta(datos.canasta3);
 </script>
 <p>
-    <input id='b1' type='button' value='Listador' onclick='ponerSalarios(datos.listador); marcar("b1");'>
-    <input id='b2' type='button' value='Contratado' onclick='ponerSalarios(datos.contratado); marcar("b2");'>
-    <input id='b3' type='button' value='Planta Adm.' onclick='ponerSalarios(datos.administrativo); marcar("b3");'>
+    <input id='b1' type='button' value='Listador' onclick='tabla.ponerSalarios(datos.listador); marcar("b1");'>
+    <input id='b2' type='button' value='Contratado' onclick='tabla.ponerSalarios(datos.contratado); marcar("b2");'>
+    <input id='b3' type='button' value='Planta Adm.' onclick='tabla.ponerSalarios(datos.administrativo); marcar("b3");'>
     <input id='b4' type='button' value='Personalizado' onclick='habilitar(true); marcar("b4");'>
 <p>
-    <input id='c1' type='button' value='Canasta 3' title='Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda.' onclick='ponerCanasta(datos.canasta3); marcarC("c1");'>
+    <input id='c1' type='button' value='Canasta 3' title='Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda.' onclick='tabla.ponerCanasta(datos.canasta3); marcarC("c1");'>
     <input id='c2' type='button' value='Canasta 5Bis' title='Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, 
-activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.' onclick='ponerCanasta(datos.canasta5bis); marcarC("c2");'>
+activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.' onclick='tabla.ponerCanasta(datos.canasta5bis); marcarC("c2");'>
 <p><input type='button' value='Graficar' onclick='grafico.dibujarGrafico(tabla.generarData()[0]);'>
 <script>
 marcar("b1");
