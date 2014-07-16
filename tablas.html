@@ -11,6 +11,12 @@
     width: 52px;
     z-index : 1000;
 }
+.fila1, .fila3{
+    background-color: #81DAF5;
+}
+.fila0, .fila2{
+    background-color: #00BFFF;
+}
 .instrucciones{
     padding: 15px;
     box-shadow: 1px 1px #aeaeae;
@@ -47,8 +53,8 @@
    tabla = (function(){
    //privada
         var columnas = 12;
-        var filas = 2;
-        var meses=["jun","jul","ago","set","oct","nov","dic","ENE","FEB","MAR","ABR","MAY"];
+        var filas = 4;
+        var meses=["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SET","OCT","NOV","DIC","ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SET","OCT","NOV","DIC"];
         function ponerFila(lindatos,fila){
             fila2 = document.getElementsByClassName(fila);
             for(j=0; j<12; j++){
@@ -58,17 +64,23 @@
    //publica
    return {
         habilitar: function(sino){
-            fila1 = document.getElementsByClassName("fila0");
+            fila0 = document.getElementsByClassName("fila0");
+            fila2 = document.getElementsByClassName("fila2");
             for(j=0; j<12; j++){
-                fila1[j].disabled = !sino;
+                fila0[j].disabled = !sino;
+                fila2[j].disabled = !sino;
             }
         },
         ponerCanasta: function(canasta){
             ponerFila(canasta, "fila1");
+            canasta = canasta.slice(12);
+            ponerFila(canasta, "fila3");
         },
         ponerSalarios: function(salarios){
             this.habilitar(false);
             ponerFila(salarios, "fila0");
+            salarios = salarios.slice(12);
+            ponerFila(salarios, "fila2");
         },
         ponerTabla: function (){
             var laTabla = '';
@@ -85,15 +97,17 @@
             }
             primerfila = primerfila + "</th></tr>";
             laTabla = '<table >' + primerfila + laTabla + '</table>';
-            laTabla = '<table> <tr><td><div> Mes:</div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
+            laTabla = '<table> <tr><td><div> 2013</div><div>Salario:</div><div>Canasta:</div><div> 2014</div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
             document.write(laTabla);
         },
         generarData: function(){
             var dataA = [];
                 var filaF=[['Texto', '% de la canasta']];
-                for(k=1; k<=columnas; k++){
-                    valor = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[0].value) /parseInt(document.getElementsByClassName("columna"+k)[1].value)* 100).toFixed(2));
-                    filaF.push([meses[k-1], valor]);
+                for(j=0; j<4; j=j+2){
+                   for(k=1; k<=columnas; k++){
+                       valor = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[j].value) /parseInt(document.getElementsByClassName("columna"+k)[j+1].value)* 100).toFixed(2));
+                       filaF.push([meses[k-1], valor]);
+                   }
                 }
                 dataA.push(filaF);
             return dataA;
@@ -105,26 +119,24 @@
    //privada
    //publica
    return {
-        canasta3: [2083.23, 2150.19, 2206.87, 2251.75, 2302.98, 2352.61, 2402.43, 2517.65, 2638.34, 2721.77, 2803.85, 2884],
-        canasta5bis: [7902, 8144, 8351, 8534, 8745, 8905, 9087, 9378, 9802, 10116, 10454, 10710],
-        listador: [4500, 4500, 4500, 4800, 4800, 4800, 4800, 5000, 5000, 5000, 5000, 5000],
-        contratado: [5200, 5200, 5200, 5200, 5200, 5200, 5200, 5600, 5600, 5600, 5600, 5600],
-        administrativo: [7221, 7221, 7821, 7821, 7821, 7821, 7821, 8821, 8621, 8621, 9233, 9233],
+        canasta3: [3207, 3236, 3290, 3328, 3373, 3430, 3526, 3610, 3680, 3751, 3824, 3899, 4036, 4187, 4304, 4432, 4550,null,null,null,null,null,null,null],
+        canasta5bis: [7317, 7377, 7521, 7644, 7752, 7902, 8144, 8351, 8534, 8745, 8905, 9087, 9378, 9802, 10117, 10454, 10711,null,null,null,null,null,null,null],
+        contratado: [null,null,null,null,null,5200, 5200, 5200, 5200, 5200, 5200, 5200, 5600, 5600, 5600, 5600, 5600,null,null,null,null,null,null,null],
+        administrativo: [null,null,null,null,null,7221, 7221, 7821, 7821, 7821, 7821, 7821, 8821, 8621, 8621, 9233, 9233,null,null,null,null,null,null,null],
    };
    })();
  </script> 
 <script>
 function marcar(boton){
-    document.getElementById("b1").style.backgroundColor = "";
     document.getElementById("b2").style.backgroundColor = "";
     document.getElementById("b3").style.backgroundColor = "";
     document.getElementById("b4").style.backgroundColor = "";
-    document.getElementById(boton).style.backgroundColor = "orange";
+    document.getElementById(boton).style.backgroundColor = "#00BFFF";
 }
 function marcarC(boton){
     document.getElementById("c1").style.backgroundColor = "";
     document.getElementById("c2").style.backgroundColor = "";
-    document.getElementById(boton).style.backgroundColor = "orange";
+    document.getElementById(boton).style.backgroundColor = "#81DAF5";
 }
 window.onload=function(){grafico.dibujarGrafico(tabla.generarData()[0]);};
 </script>
@@ -140,11 +152,10 @@ window.onload=function(){grafico.dibujarGrafico(tabla.generarData()[0]);};
 <form>
 <script>
 tabla.ponerTabla();
-tabla.ponerSalarios(datos.listador);
+tabla.ponerSalarios(datos.contratado);
 tabla.ponerCanasta(datos.canasta3);
 </script>
 <p>
-    <input id='b1' type='button' value='Listador' onclick='tabla.ponerSalarios(datos.listador); marcar("b1");'>
     <input id='b2' type='button' value='Contratado' onclick='tabla.ponerSalarios(datos.contratado); marcar("b2");'>
     <input id='b3' type='button' value='Planta Adm.' onclick='tabla.ponerSalarios(datos.administrativo); marcar("b3");'>
     <input id='b4' type='button' value='Personalizado' onclick='tabla.habilitar(true); marcar("b4");'>
@@ -154,7 +165,7 @@ tabla.ponerCanasta(datos.canasta3);
 activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.' onclick='tabla.ponerCanasta(datos.canasta5bis); marcarC("c2");'>
 <p><input type='button' value='Graficar' onclick='grafico.dibujarGrafico(tabla.generarData()[0]);'>
 <script>
-marcar("b1");
+marcar("b2");
 marcarC("c1");
 </script>
 </form>
