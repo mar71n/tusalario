@@ -3,6 +3,29 @@
 </head>
 <body>
 <style>
+.btn{
+	padding: 1px 5px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px;
+	box-sizing: border-box;
+	cursor: pointer;
+	border: 1px solid transparent;
+}
+.inpt{
+	margin-top: 10px;
+	height: 20px;
+	padding: 3px 7px;
+	font-size: 12px;
+	font-weight:bold;
+	line-height: 1.5;
+	border-radius: 3px;
+	border: 1px solid transparent;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	margin: 0;
+	box-sizing: border-box;
+}
 .titulo{
     font-size: 1.5em;
     font-weight: bold;
@@ -92,12 +115,12 @@
             for (var f = 0; f < filas; f++){
                 laTabla = laTabla + '<tr>';
                 for (var c = 1; c <= columnas; c++){
-                    laTabla = laTabla +  '<td> <input type="text" class="celda columna' + c + ' fila' + f + '" disabled/>  </td>';
+                    laTabla = laTabla +  '<td> <input type="text" class="inpt celda columna' + c + ' fila' + f + '" disabled/>  </td>';
                 }
             }
             primerfila = primerfila + "</th></tr>";
             laTabla = '<table >' + primerfila + laTabla + '</table>';
-            laTabla = '<table> <tr><td><div> 2013</div><div>Salario:</div><div>Canasta:</div><div> 2014</div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
+            laTabla = '<table> <tr><td><div><b> 2013</b></div><div>Salario:</div><div>Canasta:</div><div><b> 2014</b></div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
             document.write(laTabla);
         },
         generarData: function(){
@@ -156,14 +179,14 @@ tabla.ponerSalarios(datos.contratado);
 tabla.ponerCanasta(datos.canasta3);
 </script>
 <p>
-    <input id='b2' type='button' value='Contratado' onclick='tabla.ponerSalarios(datos.contratado); marcar("b2");'>
-    <input id='b3' type='button' value='Planta Adm.' onclick='tabla.ponerSalarios(datos.administrativo); marcar("b3");'>
-    <input id='b4' type='button' value='Personalizado' onclick='tabla.habilitar(true); marcar("b4");'>
+    <input id='b2' type='button' class="btn" value='Contratado' onclick='tabla.ponerSalarios(datos.contratado); marcar("b2");'>
+    <input id='b3' type='button' class="btn" value='Planta Adm.' onclick='tabla.ponerSalarios(datos.administrativo); marcar("b3");'>
+    <input id='b4' type='button' class="btn" value='Personalizado' onclick='tabla.habilitar(true); marcar("b4");'>
 <p>
-    <input id='c1' type='button' value='Canasta 3' title='Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda.' onclick='tabla.ponerCanasta(datos.canasta3); marcarC("c1");'>
-    <input id='c2' type='button' value='Canasta 5Bis' title='Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, 
+    <input id='c1' type='button' class="btn" value='Canasta 3' title='Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda.' onclick='tabla.ponerCanasta(datos.canasta3); marcarC("c1");'>
+    <input id='c2' type='button' class="btn" value='Canasta 5Bis' title='Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, 
 activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.' onclick='tabla.ponerCanasta(datos.canasta5bis); marcarC("c2");'>
-<p><input type='button' value='Graficar' onclick='grafico.dibujarGrafico(tabla.generarData()[0]);'>
+<p><input type='button' class="btn" value='Graficar' onclick='grafico.dibujarGrafico(tabla.generarData()[0]);'>
 <script>
 marcar("b2");
 marcarC("c1");
