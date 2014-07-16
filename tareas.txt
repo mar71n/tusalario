@@ -10,3 +10,12 @@ Algunas observaciones:
 ·Describir con una llamada los casos testigos de los planta (administrativo con fondo de 60%, etc, etc). También se puede agregar dos botones más para Técnico y Profesional (como casos testigos). La info está para esos dos agrupamientos tambien.
 ·En los gráficos, unificar la escala (los porcentajes del eje de la Y) sino pueden ser engañosos. Poner un titulo al grafico, por ejemplo:” Salario versus Canasta total. Porcentaje de la canasta total que cubre el salario de un trabajador seleccionado de la DGEyC”. Agregar abajo del gráfico la “fuente: elaboración propia. Canasta Total elaborada por la DGEyC (GCBA)”.
 ·Para el calculo “predeterminado”, esta bien el grafico de líneas. Pero para el calculo manual, hay que remplazarlo por el de barra (por si solo se carga algunos meses, por ejemplo, se carga los valores salariales solo del mes de junio 2013 y el de 2014, solo dos valores, se ve mejor con el grafico de barras que el de líneas).
+
+1- Te envio adjunto los valores de las canastas para corregirlas. Fijate que estan las de la Canasta 5 bis (incluye alquiler) y arme una con alquiler para un hogar Unipersonal (canasta 3 + alquiler). Asi ambas son para hogares que alquilan...
+Hay que agregarle una llamada para explicar como se componen esos hogares. Por ejemplo:
+Hogar 5 bis: Matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.
+Hogar 3 + alquiler del Hogar 5: hogar unipersonal de un varón de 25 años, activo + alquiler del Hogar 5 (matrimonio de dos adultos mayores de 25 años, activos, sin hijos).
+2- Por otro lado, me parece que hay que sacar el boton de "listado".
+3- Y revisar el tema grafico: 
+a- unificar escala de eje Y 
+b- para calculo manual, agregar grafico de "BARRA" (dejar para el predeterminado el "lineal")
