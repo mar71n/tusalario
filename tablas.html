@@ -187,7 +187,7 @@ function marcar(boton){
     document.getElementById(boton).style.backgroundColor = "#00BFFF";
     switch(boton){
         case "b2": document.getElementsByClassName("notasalario")[0].innerText = "Salario testigo de contratado";break;
-        case "b3": document.getElementsByClassName("notasalario")[0].innerText = "Salario administrativo con fondo de 60%";break;
+        case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";break;
         case "b4": document.getElementsByClassName("notasalario")[0].innerText = "Completa con tus datos y grafica.";break;
     }
 }
