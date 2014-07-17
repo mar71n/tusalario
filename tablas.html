@@ -3,6 +3,11 @@
 </head>
 <body>
 <style>
+.tipografico{
+    font-size: 14px;
+    text-decoration: none;
+    color: #000000;
+}
 .notasalario{
     padding: 3px 7px;
     margin-top: 10px;
@@ -96,6 +101,19 @@
             };
             // Dibujar el gráfico
             new google.visualization.LineChart(
+            //ColumnChart sería el tipo de gráfico a dibujar
+            document.getElementById('GraficoGoogleChart-ejemplo-1')
+            ).draw(data, options);
+        },
+        dibujarGrafico2: function(setDatos) {
+            // Tabla de datos: valores y etiquetas de la gráfica
+            var data = google.visualization.arrayToDataTable(setDatos);
+            var options = {
+                title: '% salario de canasta',
+                orientation: 'horizontal'
+            };
+            // Dibujar el gráfico
+            new google.visualization.BarChart(
             //ColumnChart sería el tipo de gráfico a dibujar
             document.getElementById('GraficoGoogleChart-ejemplo-1')
             ).draw(data, options);
@@ -200,6 +218,11 @@ function marcarC(boton){
         case "c2": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 5 bis:</b> Matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.";break;
     }
 }
+function marcarTipo(tipo){
+    document.getElementById("lineas").style.backgroundColor = "";
+    document.getElementById("barras").style.backgroundColor = "";
+    document.getElementById(tipo).style.backgroundColor = "#81DAF5";
+}
 window.onload=function(){grafico.dibujarGrafico(tabla.generarData()[0]);};
 </script>
 <p class="titulo">Gráfico de Salario sobre Canasta</p>
@@ -226,18 +249,24 @@ tabla.ponerCanasta(datos.canasta3);
         <input id='c1' type='button' class="btn" value='Canasta 3' title='Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda.' onclick='tabla.ponerCanasta(datos.canasta3); marcarC("c1");'>
         <input id='c2' type='button' class="btn" value='Canasta 5Bis' title='Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, 
     activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.' onclick='tabla.ponerCanasta(datos.canasta5bis); marcarC("c2");'>
-    <p><input type='button' class="btn" value='Graficar' onclick='grafico.dibujarGrafico(tabla.generarData()[0]);'>
+    <p><input type='button' class="btn" value='Graficar' onclick='grafico.dibujarGrafico(tabla.generarData()[0]);marcarTipo("lineas");'>
 </div>
 <div class="notas">
   <div class="notasalario">salario</div>
   <div class="notacanasta">canasta</div>
 </div>
+</form>
+<div>
+<a class="tipografico" id="lineas" title="Grafico de lineas" href="#" onclick="grafico.dibujarGrafico(tabla.generarData()[0]);marcarTipo('lineas');return false;">Lineas</a>
+-
+<a class="tipografico" id="barras" title="Grafico de barras" href="#" onclick="grafico.dibujarGrafico2(tabla.generarData()[0]);marcarTipo('barras');return false;">Barras</a>
+<div class="grafico" id="GraficoGoogleChart-ejemplo-1" style="width: 800px; height: 600px">
+</div>
+</div>
 <script>
 marcar("b2");
 marcarC("c1");
+marcarTipo('lineas');
 </script>
-</form>
-<div class="grafico" id="GraficoGoogleChart-ejemplo-1" style="width: 800px; height: 600px">
-</div>
 </body>
 </html>
