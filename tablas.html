@@ -2,6 +2,7 @@
 <head>
 </head>
 <body>
+<div class='l0sd3sst3rr4d0s'>
 <style>
 .tipografico{
     font-size: 14px;
@@ -94,29 +95,20 @@
    //publica
    return {
         dibujarGrafico: function(setDatos) {
-            // Tabla de datos: valores y etiquetas de la gráfica
             var data = google.visualization.arrayToDataTable(setDatos);
             var options = {
-            //title: '% salario de canasta',
             legend: { position: 'in' },
             vAxis:{baseline: '100'},
             };
-            // Dibujar el gráfico
             new google.visualization.LineChart(
-            //ColumnChart sería el tipo de gráfico a dibujar
             document.getElementById('GraficoGoogleChart-ejemplo-1')
             ).draw(data, options);
         },
         dibujarGrafico2: function(setDatos) {
-            // Tabla de datos: valores y etiquetas de la gráfica
             var data = google.visualization.arrayToDataTable(setDatos);
             var options = {
-                //title: '% salario de canasta',
                 orientation: 'horizontal',
-                //vAxis:{minValue: '0'},
                 legend: { position: 'in' },
-                //vAxis:{baseline: '100'},
-                //explorer: {axis: 'vertical',actions: ['dragToPan', 'rightClickToReset'] }
             };
             // Dibujar el gráfico
             new google.visualization.BarChart(
@@ -281,5 +273,6 @@ marcar("b2");
 marcarC("c1");
 marcarTipo('lineas');
 </script>
+</div>
 </body>
 </html>
