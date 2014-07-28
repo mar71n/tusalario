@@ -191,6 +191,7 @@
         canasta5bis: [7317, 7377, 7521, 7644, 7752, 7902, 8144, 8351, 8534, 8745, 8905, 9087, 9378, 9802, 10117, 10454, 10711,10943,null,null,null,null,null,null],
         contratado: [4400,4400,4400,4400,4400,5200, 5200, 5200, 5200, 5200, 5200, 5200, 5600, 5600, 5600, 5600, 5600,6200,null,null,null,null,null,null],
         administrativo: [6721, 6721, 6721, 6721, 7221,7221, 7221, 7821, 7821, 7821, 7821, 7821, 8821, 8621, 8621, 9233, 9233,9233, 9233, 9674, 9674, 9674, 10292, 11288],
+        profesional: [8084, 8084, 8084, 8084, 8584, 8584, 8584, 9184, 9184, 9184, 9184, 9184, 10184, 9984, 9984, 10819, 10819, 10819, 10819, 11331, 11331, 11331, 12046, 13075]
    };
    })();
  </script> 
@@ -198,11 +199,13 @@
 function marcar(boton){
     document.getElementById("b2").style.backgroundColor = "";
     document.getElementById("b3").style.backgroundColor = "";
+    document.getElementById("b31").style.backgroundColor = "";
     document.getElementById("b4").style.backgroundColor = "";
     document.getElementById(boton).style.backgroundColor = "#00BFFF";
     switch(boton){
         case "b2": document.getElementsByClassName("notasalario")[0].innerText = "Salario testigo de contratado";break;
         case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";break;
+        case "b31": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";break;
         case "b4": document.getElementsByClassName("notasalario")[0].innerText = "Completa con tus datos y grafica.";break;
     }
 }
@@ -247,8 +250,11 @@ tabla.ponerCanasta(datos.canasta3);
 </script>
 <div class="botones">
     <p>
+        <div>
         <input id='b2' type='button' class="btn" value='Contratado' onclick='tabla.ponerSalarios(datos.contratado); marcar("b2");'>
         <input id='b3' type='button' class="btn" value='Planta Adm.' onclick='tabla.ponerSalarios(datos.administrativo); marcar("b3");'>
+        <input id='b31' type='button' class="btn" value='Planta Prof.' onclick='tabla.ponerSalarios(datos.profesional); marcar("b31");'>
+        </div>
         <input id='b4' type='button' class="btn" value='Personalizado' onclick='tabla.ponerSalarios(datos.vacio); tabla.habilitar(true); marcar("b4");'>
     <p>
         <input id='c1' type='button' class="btn" value='Canasta 3 + Alq.' title='Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda.' onclick='tabla.ponerCanasta(datos.canasta3); marcarC("c1");'>
