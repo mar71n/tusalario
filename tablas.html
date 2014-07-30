@@ -199,14 +199,14 @@
 function marcar(boton){
     document.getElementById("b2").style.backgroundColor = "";
     document.getElementById("b3").style.backgroundColor = "";
-    document.getElementById("b31").style.backgroundColor = "";
+    document.getElementById("b5").style.backgroundColor = "";
     document.getElementById("b4").style.backgroundColor = "";
     document.getElementById(boton).style.backgroundColor = "#00BFFF";
     switch(boton){
-        case "b2": document.getElementsByClassName("notasalario")[0].innerText = "Salario testigo de contratado";break;
+        case "b2": document.getElementsByClassName("notasalario")[0].innerHTML = "Salario testigo de contratado";break;
         case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";break;
-        case "b31": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";break;
-        case "b4": document.getElementsByClassName("notasalario")[0].innerText = "Completa con tus datos y grafica.";break;
+        case "b5": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";break;
+        case "b4": document.getElementsByClassName("notasalario")[0].innerHTML = "Completa con tus datos y grafica.";break;
     }
 }
 function marcarC(boton){
@@ -253,7 +253,7 @@ tabla.ponerCanasta(datos.canasta3);
         <div>
         <input id='b2' type='button' class="btn" value='Contratado' onclick='tabla.ponerSalarios(datos.contratado); marcar("b2");'>
         <input id='b3' type='button' class="btn" value='Planta Adm.' onclick='tabla.ponerSalarios(datos.administrativo); marcar("b3");'>
-        <input id='b31' type='button' class="btn" value='Planta Prof.' onclick='tabla.ponerSalarios(datos.profesional); marcar("b31");'>
+        <input id='b5' type='button' class="btn" value='Planta Prof.' onclick='tabla.ponerSalarios(datos.profesional); marcar("b5");'>
         </div>
         <input id='b4' type='button' class="btn" value='Personalizado' onclick='tabla.ponerSalarios(datos.vacio); tabla.habilitar(true); marcar("b4");'>
     <p>
