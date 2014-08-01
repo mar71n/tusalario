@@ -14,14 +14,14 @@
     margin-top: 10px;
     margin-left: 30px;
 	border-radius: 5px;
-    background-color: #00BFFF;
+	background-color: #CC6600;
     width: 420px; height: 50px
 }
 .notacanasta{
     padding: 3px 7px;
     margin-top: 10px;
 	border-radius: 5px;
-    background-color: #81DAF5;
+    background-color: #99CC66;
     width: 450px; height: 90px
 }
 .grafico{
@@ -68,13 +68,13 @@
     z-index : 1000;
 }
 .fila1, .fila3{
-    background-color: #81DAF5;
+	background-color: #99CC66;
 }
 .fila2{
     margin-top: 10px;
 }
 .fila0, .fila2{
-    background-color: #00BFFF;
+	background-color: #CC6600;
 }
 .instrucciones{
     padding: 15px;
@@ -99,6 +99,7 @@
             var options = {
             legend: { position: 'in' },
             vAxis:{baseline: '100'},
+            colors:['#99CC66']
             };
             new google.visualization.LineChart(
             document.getElementById('GraficoGoogleChart-ejemplo-1')
@@ -109,6 +110,7 @@
             var options = {
                 orientation: 'horizontal',
                 legend: { position: 'in' },
+                colors:['#CC6600']
             };
             new google.visualization.BarChart(
             document.getElementById('GraficoGoogleChart-ejemplo-1')
@@ -201,7 +203,7 @@ function marcar(boton){
     document.getElementById("b3").style.backgroundColor = "";
     document.getElementById("b5").style.backgroundColor = "";
     document.getElementById("b4").style.backgroundColor = "";
-    document.getElementById(boton).style.backgroundColor = "#00BFFF";
+    document.getElementById(boton).style.backgroundColor = "#CC6600";
     switch(boton){
         case "b2": document.getElementsByClassName("notasalario")[0].innerHTML = "Salario testigo de contratado";break;
         case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";break;
@@ -212,7 +214,7 @@ function marcar(boton){
 function marcarC(boton){
     document.getElementById("c1").style.backgroundColor = "";
     document.getElementById("c2").style.backgroundColor = "";
-    document.getElementById(boton).style.backgroundColor = "#81DAF5";
+    document.getElementById(boton).style.backgroundColor = "#99CC66";
     switch(boton){
         case "c1": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 3 + alquiler del Hogar 5:</b> hogar unipersonal de un varón de 25 años, activo + alquiler del Hogar 5 (matrimonio de dos adultos mayores de 25 años, activos, sin hijos).";break;
         case "c2": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 5 bis:</b> Matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.";break;
@@ -221,7 +223,7 @@ function marcarC(boton){
 function marcarTipo(tipo){
     document.getElementById("lineas").style.backgroundColor = "";
     document.getElementById("barras").style.backgroundColor = "";
-    document.getElementById(tipo).style.backgroundColor = "#81DAF5";
+    document.getElementById(tipo).style.backgroundColor = "#99CC66";
 }
 function graficarIndicado(){
 	if (document.getElementById("lineas").style.backgroundColor !== ""){
