@@ -4,6 +4,9 @@
 <body>
 <div class='l0sd3st3rr4d0s'>
 <style>
+body{
+    background-color: #ff7f15;
+}
 .tipografico{
     font-size: 14px;
     text-decoration: none;
@@ -34,7 +37,14 @@
 }
 .botones{
     display: inline-block;
+    width: 250px;
     //border: solid #6AC5AC 3px;
+}
+.lbotones{
+    display: inline-block;
+}
+.lbotones2{
+    display: inline-flex;
 }
 .btn{
 	padding: 1px 5px;
@@ -44,6 +54,7 @@
 	box-sizing: border-box;
 	cursor: pointer;
 	border: 1px solid transparent;
+    display: inline-block;
 }
 .inpt{
 	margin-top: 10px;
@@ -51,6 +62,7 @@
 	padding: 3px 7px;
 	font-size: 80%;
 	font-weight:bold;
+    color: #000000;
 	line-height: 1.5;
 	border-radius: 3px;
 	border: 1px solid transparent;
@@ -252,7 +264,7 @@ tabla.ponerCanasta(datos.canasta3);
 </script>
 <div class="botones">
     <p>
-        <div>
+        <div class="lbotones2">
         <input id='b2' type='button' class="btn" value='Contratado' onclick='tabla.ponerSalarios(datos.contratado); marcar("b2");'>
         <input id='b3' type='button' class="btn" value='Planta Adm.' onclick='tabla.ponerSalarios(datos.administrativo); marcar("b3");'>
         <input id='b5' type='button' class="btn" value='Planta Prof.' onclick='tabla.ponerSalarios(datos.profesional); marcar("b5");'>
@@ -269,12 +281,11 @@ tabla.ponerCanasta(datos.canasta3);
   <div class="notacanasta">canasta</div>
 </div>
 </form>
-<div>
+<div class="lbotones2">
 <a class="tipografico" id="lineas" title="Grafico de lineas" href="#" onclick="grafico.dibujarGrafico(tabla.generarData()[0]);marcarTipo('lineas');return false;">Lineas</a>
--
 <a class="tipografico" id="barras" title="Grafico de barras" href="#" onclick="grafico.dibujarGrafico2(tabla.generarData()[0]);marcarTipo('barras');return false;">Barras</a>
-<div class="grafico" id="GraficoGoogleChart-ejemplo-1" style="width: 800px; height: 600px">
 </div>
+<div class="grafico" id="GraficoGoogleChart-ejemplo-1" style="width: 600px; height: 400px">
 </div>
 <script>
 marcar("b2");
