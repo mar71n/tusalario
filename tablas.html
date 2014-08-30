@@ -98,7 +98,7 @@ body{
     width:700px;
 }
 </style>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script> 
+<script src="https://www.google.com/jsapi" type="text/javascript"></script> 
 <script type="text/javascript">
    google.load("visualization", "1", {packages:["corechart"]});
    var grafico = {};
@@ -201,11 +201,11 @@ body{
    //publica
    return {
         vacio: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
-        canasta3: [3207, 3236, 3290, 3328, 3373, 3430, 3526, 3610, 3680, 3751, 3824, 3899, 4036, 4187, 4304, 4432, 4550,4664,null,null,null,null,null,null],
-        canasta5bis: [7317, 7377, 7521, 7644, 7752, 7902, 8144, 8351, 8534, 8745, 8905, 9087, 9378, 9802, 10117, 10454, 10711,10943,null,null,null,null,null,null],
-        contratado: [4400,4400,4400,4400,4400,5200, 5200, 5200, 5200, 5200, 5200, 5200, 5600, 5600, 5600, 5600, 5600,6200,null,null,null,null,null,null],
-        administrativo: [6721, 6721, 6721, 6721, 7221,7221, 7221, 7821, 7821, 7821, 7821, 7821, 8821, 8621, 8621, 9233, 9233,9233, 9233, 9674, 9674, 9674, 10292, 11288],
-        profesional: [8084, 8084, 8084, 8084, 8584, 8584, 8584, 9184, 9184, 9184, 9184, 9184, 10184, 9984, 9984, 10819, 10819, 10819, 10819, 11331, 11331, 11331, 12046, 13075]
+        canasta3: [3207, 3236, 3290, 3328, 3373, 3430, 3526, 3610, 3680, 3751, 3824, 3899, 4036, 4187, 4304, 4432, 4550,4664,4782,null,null,null,null,null],
+        canasta5bis: [7317, 7377, 7521, 7644, 7752, 7902, 8144, 8351, 8534, 8745, 8905, 9087, 9378, 9802, 10117, 10454, 10711,10943,11148,null,null,null,null,null],
+        contratado: [4400,4400,4400,4400,4400,5200, 5200, 5200, 5200, 5200, 5200, 5200, 5600, 5600, 5600, 5600, 5600,6200,6200,null,null,null,null,null],
+        administrativo: [6721, 6721, 6721, 6721, 7221,7221, 7221, 7821, 7821, 7821, 7821, 7821, 8821, 8621, 8621, 9197, 9197,9197, 9197, 9627, 9627, 9627, 10228, 11224],
+        profesional: [8085, 8085, 8085, 8085, 8585, 8585, 8585, 9185, 9185, 9185, 9185, 9185, 10185, 9985, 9985, 10783, 10783, 10783, 10783, 11283, 11283, 11283, 11983, 13012]
    };
    })();
  </script> 
@@ -238,15 +238,16 @@ function marcarTipo(tipo){
     document.getElementById(tipo).style.backgroundColor = "#99CC66";
 }
 function graficarIndicado(){
-	if (document.getElementById("lineas").style.backgroundColor !== ""){
-		grafico.dibujarGrafico(tabla.generarData()[0]);
-	} else{
-		grafico.dibujarGrafico2(tabla.generarData()[0]);
-	}
+    if (document.getElementById("lineas").style.backgroundColor !== ""){
+        grafico.dibujarGrafico(tabla.generarData()[0]);
+    } else{
+        grafico.dibujarGrafico2(tabla.generarData()[0]);
+    }
 }
 window.onload=function(){grafico.dibujarGrafico(tabla.generarData()[0]);};
 </script>
-<p class="titulo">Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</p>
+<div class="titulo">
+Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
 <div class="instrucciones">
 <p>Selecciona un set de datos para salarios, otro para canasta y presiona "Graficar".
 <p>Podes obtener el gráfico a partir de salarios ya cargados de contratados o de planta permanente (casos testigos).
@@ -263,29 +264,32 @@ tabla.ponerSalarios(datos.contratado);
 tabla.ponerCanasta(datos.canasta3);
 </script>
 <div class="botones">
-    <p>
-        <div class="lbotones2">
-        <input id='b2' type='button' class="btn" value='Contratado' onclick='tabla.ponerSalarios(datos.contratado); marcar("b2");'>
-        <input id='b3' type='button' class="btn" value='Planta Adm.' onclick='tabla.ponerSalarios(datos.administrativo); marcar("b3");'>
-        <input id='b5' type='button' class="btn" value='Planta Prof.' onclick='tabla.ponerSalarios(datos.profesional); marcar("b5");'>
-        </div>
-        <input id='b4' type='button' class="btn" value='Personalizado' onclick='tabla.ponerSalarios(datos.vacio); tabla.habilitar(true); marcar("b4");'>
-    <p>
-        <input id='c1' type='button' class="btn" value='Canasta 3 + Alq.' title='Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda.' onclick='tabla.ponerCanasta(datos.canasta3); marcarC("c1");'>
-        <input id='c2' type='button' class="btn" value='Canasta 5Bis' title='Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, 
-    activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.' onclick='tabla.ponerCanasta(datos.canasta5bis); marcarC("c2");'>
-    <p><input type='button' class="btn" value='Graficar' onclick='graficarIndicado();'>
+
+<div class="lbotones2">
+<input class="btn" id="b2" onclick="tabla.ponerSalarios(datos.contratado); marcar(&quot;b2&quot;);" type="button" value="Contratado" />
+<input class="btn" id="b3" onclick="tabla.ponerSalarios(datos.administrativo); marcar(&quot;b3&quot;);" type="button" value="Planta Adm." />
+<input class="btn" id="b5" onclick="tabla.ponerSalarios(datos.profesional); marcar(&quot;b5&quot;);" type="button" value="Planta Prof." />
+</div>
+<input class="btn" id="b4" onclick="tabla.ponerSalarios(datos.vacio); tabla.habilitar(true); marcar(&quot;b4&quot;);" type="button" value="Personalizado" />
+<input class="btn" id="c1" onclick="tabla.ponerCanasta(datos.canasta3); marcarC(&quot;c1&quot;);" title="Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda." type="button" value="Canasta 3 + Alq." />
+<input class="btn" id="c2" onclick="tabla.ponerCanasta(datos.canasta5bis); marcarC(&quot;c2&quot;);" title="Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, 
+    activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda." type="button" value="Canasta 5Bis" />
+
+<input class="btn" onclick="graficarIndicado();" type="button" value="Graficar" />
+
+
 </div>
 <div class="notas">
-  <div class="notasalario">salario</div>
-  <div class="notacanasta">canasta</div>
+<div class="notasalario">
+salario</div>
+<div class="notacanasta">
+canasta</div>
 </div>
 </form>
 <div class="lbotones2">
-<a class="tipografico" id="lineas" title="Grafico de lineas" href="#" onclick="grafico.dibujarGrafico(tabla.generarData()[0]);marcarTipo('lineas');return false;">Lineas</a>
-<a class="tipografico" id="barras" title="Grafico de barras" href="#" onclick="grafico.dibujarGrafico2(tabla.generarData()[0]);marcarTipo('barras');return false;">Barras</a>
-</div>
-<div class="grafico" id="GraficoGoogleChart-ejemplo-1" style="width: 600px; height: 400px">
+<a class="tipografico" href="https://www.blogger.com/blogger.g?blogID=4965291061104686328#" id="lineas" onclick="grafico.dibujarGrafico(tabla.generarData()[0]);marcarTipo('lineas');return false;" title="Grafico de lineas">Lineas</a>
+<a class="tipografico" href="https://www.blogger.com/blogger.g?blogID=4965291061104686328#" id="barras" onclick="grafico.dibujarGrafico2(tabla.generarData()[0]);marcarTipo('barras');return false;" title="Grafico de barras">Barras</a></div>
+<div class="grafico" id="GraficoGoogleChart-ejemplo-1" style="height: 400px; width: 600px;">
 </div>
 <script>
 marcar("b2");
