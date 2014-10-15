@@ -13,6 +13,7 @@ body{
     color: #000000;
 }
 .notasalario{
+    display: block;
     padding: 3px 7px;
     margin-top: 10px;
     margin-left: 30px;
@@ -21,6 +22,7 @@ body{
     width: 420px; height: 50px
 }
 .notacanasta{
+    display: block;
     padding: 3px 7px;
     margin-top: 10px;
     border-radius: 5px;
@@ -28,23 +30,28 @@ body{
     width: 450px; height: 90px
 }
 .grafico{
-    //border: solid #6AC5AC 3px;
 }
 .notas{
-    display: inline-block;
-    position: absolute;
-    //border: solid #6AC5AC 3px;
+    margin-top: 0px;
+    float:left;
+    width: 250px;
+    height: 70px;
 }
 .botones{
-    display: inline-block;
-    width: 250px;
-    //border: solid #6AC5AC 3px;
+    width: 700px;
+    height: 150px
 }
-.lbotones{
-    display: inline-block;
+.botones-tg{
+    width: 250px;
 }
 .lbotones2{
-    display: inline-flex;
+    width: 250px;
+    height: 70px;
+    float:left;
+}
+.lbotones3{
+    width: 250px;
+    height: 170px;
 }
 .btn{
     padding: 1px 5px;
@@ -54,12 +61,22 @@ body{
     box-sizing: border-box;
     cursor: pointer;
     border: 1px solid transparent;
-    display: inline-block;
+    display: block;
+}
+.btn2{
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid transparent;
+    display: inline;
 }
 .inpt{
     margin-top: 10px;
     height: 20px;
-    padding: 3px 7px;
+    padding: 0px 0px;
     font-size: 80%;
     font-weight:bold;
     color: #000000;
@@ -263,32 +280,30 @@ tabla.ponerTabla();
 tabla.ponerSalarios(datos.contratado);
 tabla.ponerCanasta(datos.canasta3);
 </script>
-<div class="botones">
-
-<div class="lbotones2">
-<input class="btn" id="b2" onclick="tabla.ponerSalarios(datos.contratado); marcar(&quot;b2&quot;);" type="button" value="Contratado" />
-<input class="btn" id="b3" onclick="tabla.ponerSalarios(datos.administrativo); marcar(&quot;b3&quot;);" type="button" value="Planta Adm." />
-<input class="btn" id="b5" onclick="tabla.ponerSalarios(datos.profesional); marcar(&quot;b5&quot;);" type="button" value="Planta Prof." />
-</div>
-<input class="btn" id="b4" onclick="tabla.ponerSalarios(datos.vacio); tabla.habilitar(true); marcar(&quot;b4&quot;);" type="button" value="Personalizado" />
-<input class="btn" id="c1" onclick="tabla.ponerCanasta(datos.canasta3); marcarC(&quot;c1&quot;);" title="Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda." type="button" value="Canasta 3 + Alq." />
-<input class="btn" id="c2" onclick="tabla.ponerCanasta(datos.canasta5bis); marcarC(&quot;c2&quot;);" title="Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, 
-    activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda." type="button" value="Canasta 5Bis" />
-
-<input class="btn" onclick="graficarIndicado();" type="button" value="Graficar" />
-
-
-</div>
-<div class="notas">
-<div class="notasalario">
-salario</div>
-<div class="notacanasta">
-canasta</div>
-</div>
 </form>
-<div class="lbotones2">
-<a class="tipografico" href="https://www.blogger.com/blogger.g?blogID=4965291061104686328#" id="lineas" onclick="grafico.dibujarGrafico(tabla.generarData()[0]);marcarTipo('lineas');return false;" title="Grafico de lineas">Lineas</a>
-<a class="tipografico" href="https://www.blogger.com/blogger.g?blogID=4965291061104686328#" id="barras" onclick="grafico.dibujarGrafico2(tabla.generarData()[0]);marcarTipo('barras');return false;" title="Grafico de barras">Barras</a></div>
+<div class="botones">
+    <div class="lbotones2">
+        <input class="btn2" id="b2" onclick="tabla.ponerSalarios(datos.contratado); marcar(&quot;b2&quot;);" type="button" value="Contratado" />
+        <input class="btn2" id="b3" onclick="tabla.ponerSalarios(datos.administrativo); marcar(&quot;b3&quot;);" type="button" value="Planta Adm." />
+        <input class="btn2" id="b5" onclick="tabla.ponerSalarios(datos.profesional); marcar(&quot;b5&quot;);" type="button" value="Planta Prof." />
+        <input class="btn2" id="b4" onclick="tabla.ponerSalarios(datos.vacio); tabla.habilitar(true); marcar(&quot;b4&quot;);" type="button" value="Personalizado" />
+    </div>
+    <div class="notas">
+        <div class="notasalario">
+        salario</div>
+        <div class="notacanasta">
+        canasta</div>
+    </div>
+    <div class="lbotones3">
+        <input class="btn" id="c1" onclick="tabla.ponerCanasta(datos.canasta3); marcarC(&quot;c1&quot;);" title="Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda." type="button" value="Canasta 3 + Alq." />
+        <input class="btn" id="c2" onclick="tabla.ponerCanasta(datos.canasta5bis); marcarC(&quot;c2&quot;);" title="Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda." type="button" value="Canasta 5Bis" />
+    </div>
+</div>
+<input class="btn" onclick="graficarIndicado();" type="button" value="Graficar" />
+<div class="botones-tg">
+    <a class="tipografico" href="https://www.blogger.com/blogger.g?blogID=4965291061104686328#" id="lineas" onclick="grafico.dibujarGrafico(tabla.generarData()[0]);marcarTipo('lineas');return false;" title="Grafico de lineas">Lineas</a>
+    <a class="tipografico" href="https://www.blogger.com/blogger.g?blogID=4965291061104686328#" id="barras" onclick="grafico.dibujarGrafico2(tabla.generarData()[0]);marcarTipo('barras');return false;" title="Grafico de barras">Barras</a>
+</div>
 <div class="grafico" id="GraficoGoogleChart-ejemplo-1" style="height: 400px; width: 600px;">
 </div>
 <script>
