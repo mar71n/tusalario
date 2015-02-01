@@ -166,7 +166,13 @@ body{
    //privada
         var columnas = 12;
         var filas = 4;
-        var meses=["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SET","OCT","NOV","DIC","ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SET","OCT","NOV","DIC"];
+        var _meses=["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SET","OCT","NOV","DIC","ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SET","OCT","NOV","DIC"];
+        var meses=[
+            new Date(2013,00,31),new Date(2013,01,28),new Date(2013,02,31),new Date(2013,03,30),new Date(2013,04,31),new Date(2013,05,30),
+            new Date(2013,06,31),new Date(2013,07,31),new Date(2013,08,30),new Date(2013,09,31),new Date(2013,10,30),new Date(2013,11,31),
+            new Date(2014,00,31),new Date(2014,01,28),new Date(2014,02,31),new Date(2014,03,30),new Date(2014,04,31),new Date(2014,05,30),
+            new Date(2014,06,31),new Date(2014,07,31),new Date(2014,08,30),new Date(2014,09,31),new Date(2014,10,30),new Date(2014,11,31)
+            ];
         function ponerFila(lindatos,fila){
             fila = document.getElementsByClassName(fila);
             for(j=0; j<12; j++){
@@ -211,7 +217,7 @@ body{
             var laTabla = '';
             var primerfila = '<tr>';
             for (var c = 0; c < columnas; c++){
-                primerfila = primerfila + '<th> ' + meses[c] + ' </th>';
+                primerfila = primerfila + '<th> ' + _meses[c] + ' </th>';
             }
             laTabla = '';
             for (var f = 0; f < filas; f++){
@@ -228,11 +234,13 @@ body{
         generarData: function(){
             var dataA = [];
                 var filaF=[['Texto', '% de la canasta']];
+                var m = 0;
                 for(j=0; j<4; j=j+2){
-                   for(k=1; k<=columnas; k++){
+                   for(k = 1 ; k<=columnas; k++){
                        valor = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[j].value) /parseInt(document.getElementsByClassName("columna"+k)[j+1].value)* 100).toFixed(2));
-                       filaF.push([meses[k-1], valor]);
+                       filaF.push([meses[k-1+m], valor]);
                    }
+                   m = 12;
                 }
                 dataA.push(filaF);
             return dataA;
@@ -240,12 +248,14 @@ body{
         generarData2: function(){
             var dataA = [];
                 var filaF=[['Texto', 'salario', 'canasta']];
+                var m = 0;
                 for(j=0; j<4; j=j+2){ 
                    for(k=1; k<=columnas; k++){
                        valor = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[j].value) ).toFixed(2));
                        valor2 = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[j+1].value) ).toFixed(2));
-                       filaF.push([meses[k-1], valor, valor2]);
+                       filaF.push([meses[k-1+m], valor, valor2]);
                    }
+                   m = 12;
                 }
                 dataA.push(filaF);
             return dataA;
