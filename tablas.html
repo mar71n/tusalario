@@ -233,7 +233,7 @@ body{
         },
         generarData: function(){
             var dataA = [];
-                var filaF=[['Texto', '% de la canasta']];
+                var filaF=[[{label:'Mes', id:'mes', type:'date'}, {label:'% de la canasta', id:'porcien',type:'number'}]];
                 var m = 0;
                 for(j=0; j<4; j=j+2){
                    for(k = 1 ; k<=columnas; k++){
@@ -247,7 +247,7 @@ body{
         },
         generarData2: function(){
             var dataA = [];
-                var filaF=[['Texto', 'salario', 'canasta']];
+                var filaF=[[{label:'Mes', id:'mes', type:'date'}, {label:'Salrio', id:'salario',type:'number'}, {label:'Canasta', id:'canasta',type:'number'}]];
                 var m = 0;
                 for(j=0; j<4; j=j+2){ 
                    for(k=1; k<=columnas; k++){
