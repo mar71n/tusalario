@@ -110,13 +110,13 @@ body{
     width: 52px;
     z-index : 1000;
 }
-.fila1, .fila3{
+.fila1, .fila3, .fila5{
     background-color: #99CC66;
 }
-.fila2{
+.fila2, .fila4{
     margin-top: 10px;
 }
-.fila0, .fila2{
+.fila0, .fila2, .fila4{
     background-color: #CC6600;
 }
 .instrucciones{
@@ -165,7 +165,7 @@ body{
    tabla = (function(){
    //privada
         var columnas = 12;
-        var filas = 4;
+        var filas = 6;
         var _meses=["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SET","OCT","NOV","DIC","ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SET","OCT","NOV","DIC"];
         var meses=[
             new Date(2013,00),new Date(2013,01),new Date(2013,02),new Date(2013,03),new Date(2013,04),new Date(2013,05),
@@ -182,21 +182,24 @@ body{
    //publica
    return {
         personalizado : false,
-        dpersonalizado : [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+        dpersonalizado : [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null, null,null,null,null,null,null,null,null,null,null,null,null],
         salvarPersonalizado: function(){
             if (this.personalizado == true){
                 for(j=0; j<12; j++){
                     this.dpersonalizado[j] = parseInt(fila0[j].value) > 0 ? parseInt(fila0[j].value) : null;
                     this.dpersonalizado[j+12] = parseInt(fila2[j].value) > 0 ? parseInt(fila2[j].value) : null;
+                    this.dpersonalizado[j+24] = parseInt(fila4[j].value) > 0 ? parseInt(fila4[j].value) : null;
                 }
             }
         },
         habilitar: function(sino){
             fila0 = document.getElementsByClassName("fila0");
             fila2 = document.getElementsByClassName("fila2");
+            fila4 = document.getElementsByClassName("fila4");
             for(j=0; j<12; j++){
                 fila0[j].disabled = !sino;
                 fila2[j].disabled = !sino;
+                fila4[j].disabled = !sino;
             }
         },
         ponerCanasta: function(canasta){
@@ -228,7 +231,7 @@ body{
             }
             primerfila = primerfila + "</th></tr>";
             laTabla = '<table >' + primerfila + laTabla + '</table>';
-            laTabla = '<table> <tr><td><div><b> 2013</b></div><div>Salario:</div><div>Canasta:</div><div><b> 2014</b></div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
+            laTabla = '<table> <tr><td><div><b> 2013</b></div><div>Salario:</div><div>Canasta:</div><div><b>  2014</b></div><div>Salario:</div><div>Canasta:</div><div><b> 2015</b></div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
             document.write(laTabla);
         },
         generarData: function(){
