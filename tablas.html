@@ -2,6 +2,18 @@
 <head>
 <div class='l0sd3st3rr4d0s'>
 <style>
+.chartWithOverlay {
+       position: relative;
+       width: 700px;
+}
+.overlay {
+       width: 200px;
+       height: 80px;
+       position: absolute;
+       top: 40px;   /* chartArea top  */
+       left: 310px; /* chartArea left */
+       visibility: hidden;
+}
 body{
     background-color: #ff7f15;
 }
@@ -286,6 +298,12 @@ body{
    })();
  </script> 
 <script>
+function ponerComentario(){
+    document.getElementsByClassName("overlay")[0].style.visibility = "visible";
+}
+function sacarComentario(){
+    document.getElementsByClassName("overlay")[0].style.visibility = "hidden";
+}
 function marcar(boton){
     document.getElementById("b2").style.backgroundColor = "";
     document.getElementById("b3").style.backgroundColor = "";
@@ -293,11 +311,12 @@ function marcar(boton){
     document.getElementById("b4").style.backgroundColor = "";
     document.getElementById(boton).style.backgroundColor = "#CC6600";
     switch(boton){
-        case "b2": document.getElementsByClassName("notasalario")[0].innerHTML = "Salario testigo de contratado";break;
-        case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";break;
-        case "b5": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";break;
-        case "b4": document.getElementsByClassName("notasalario")[0].innerHTML = "Completa con tus datos y grafica.";break;
+        case "b2": document.getElementsByClassName("notasalario")[0].innerHTML = "Salario testigo de contratado";sacarComentario();break;
+        case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";ponerComentario();break;
+        case "b5": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";ponerComentario();break;
+        case "b4": document.getElementsByClassName("notasalario")[0].innerHTML = "Completa con tus datos y grafica.";sacarComentario();break;
     }
+    graficarIndicado();
 }
 function marcarC(boton){
     document.getElementById("c1").style.backgroundColor = "";
@@ -307,6 +326,7 @@ function marcarC(boton){
         case "c1": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 3 + alquiler del Hogar 5:</b> hogar unipersonal de un varón de 25 años, activo + alquiler del Hogar 5 (matrimonio de dos adultos mayores de 25 años, activos, sin hijos).";break;
         case "c2": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 5 bis:</b> Matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.";break;
     }
+    graficarIndicado();
 }
 function marcarTipo(tipo){
     document.getElementById("lineas").style.backgroundColor = "";
@@ -369,7 +389,12 @@ tabla.ponerCanasta(datos.canasta3);
 <div class="botones-tg">
     <a class="tipografico" href="https://www.blogger.com/blogger.g?blogID=4965291061104686328#" id="lineas" onclick="marcarTipo('lineas');graficarIndicado();return false;" title="Grafico de lineas">Lineas</a> <a class="tipografico" href="https://www.blogger.com/blogger.g?blogID=4965291061104686328#" id="barras" onclick="marcarTipo('barras');graficarIndicado();return false;" title="Grafico de barras">Barras</a>
 </div>
+<div class="chartWithOverlay">
 <div class="grafico" id="GraficoGoogleChart-ejemplo-1" style="height: 400px; width: 600px;">
+</div>
+<div class="overlay">
+    <div style="font-family:'Arial'; font-size: 18px;">Enero 2015 : $2000.00 por única vez</div>
+</div>
 </div>
 <script>
 marcar("b2");
