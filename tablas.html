@@ -1,15 +1,135 @@
 <html>
 <head>
-</head>
-<body>
+<div class='l0sd3st3rr4d0s'>
 <style>
+.chartWithOverlay {
+       position: relative;
+       width: 700px;
+}
+.overlay {
+       width: 200px;
+       height: 80px;
+       position: absolute;
+       top: 40px;   /* chartArea top  */
+       left: 310px; /* chartArea left */
+       visibility: hidden;
+}
+body{
+    background-color: #ff7f15;
+}
+.tipografico{
+    font-size: 14px;
+    text-decoration: none;
+    color: #000000;
+}
+.notasalario{
+    float:left;
+    //display: block;
+    padding: 3px 7px;
+    //margin-top: 10px;
+    //margin-left: 30px;
+    border-radius: 5px;
+    background-color: #CC6600;
+    width: 400px; height: 50px;
+    color: #000000;
+}
+.notacanasta{
+    float:left;
+    //display: block;
+    padding: 3px 7px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #99CC66;
+    width: 400px; height: 90px;
+    color: #000000;
+}
+.grafico{
+}
+.notas{
+    margin-top: 0px;
+    float:left;
+    width: 420px;
+    height: 160px;
+    display: inline;
+    overflow: hidden;
+}
+.botones{
+    width: 250px;
+    height: 150px;
+    float:left;
+    //display: inline;
+}
+.botones-tg{
+    width: 250px;
+}
+.series{
+    width: 350px;
+    clear: both;
+}
+.lbotones2{
+    width: 250px;
+    height: 70px;
+    //float:left;
+}
+.lbotones3{
+    width: 250px;
+    height: 70px;
+}
+.graficar{
+    width: 700px;
+    height: 70px;
+}
+.btn{
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid transparent;
+    display: block;
+}
+.btn2{
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid transparent;
+    display: inline;
+}
+.inpt{
+    margin-top: 10px;
+    height: 20px;
+    padding: 0px 5px;
+    font-size: 80%;
+    font-weight:bold;
+    color: #000000;
+    line-height: 1.5;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    margin: 0;
+    box-sizing: border-box;
+}
 .titulo{
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: bold;
 }
 .celda{
     width: 52px;
     z-index : 1000;
+}
+.fila1, .fila3, .fila5{
+    background-color: #99CC66;
+}
+.fila2, .fila4{
+    margin-top: 10px;
+}
+.fila0, .fila2, .fila4{
+    background-color: #CC6600;
 }
 .instrucciones{
     padding: 15px;
@@ -17,135 +137,272 @@
     border-radius: 20px;
     color: #222;
     background-color: #d2d2d2;
-    font-size: 100%;
+    font-size: 0.8em;
     width:700px;
 }
 </style>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script> 
+<script src="https://www.google.com/jsapi" type="text/javascript"></script> 
 <script type="text/javascript">
    google.load("visualization", "1", {packages:["corechart"]});
-   google.setOnLoadCallback(dibujarGrafico);
-   function dibujarGrafico() {
-     // Tabla de datos: valores y etiquetas de la gráfica
-     // parseInt(document.getElementsByClassName("fila0 columna1")[0].value]
-     var data = google.visualization.arrayToDataTable([
-       ['Texto', '% de la canasta'],
-       ['jun', parseFloat((parseInt(document.getElementsByClassName("columna1")[0].value) /parseInt(document.getElementsByClassName("columna1")[1].value)* 100).toFixed(2))],
-       ['jul', parseFloat((parseInt(document.getElementsByClassName("columna2")[0].value) /parseInt(document.getElementsByClassName("columna2")[1].value)* 100).toFixed(2))],
-       ['ago', parseFloat((parseInt(document.getElementsByClassName("columna3")[0].value) /parseInt(document.getElementsByClassName("columna3")[1].value)* 100).toFixed(2))],
-       ['set', parseFloat((parseInt(document.getElementsByClassName("columna4")[0].value) /parseInt(document.getElementsByClassName("columna4")[1].value)* 100).toFixed(2))],
-       ['oct', parseFloat((parseInt(document.getElementsByClassName("columna5")[0].value) /parseInt(document.getElementsByClassName("columna5")[1].value)* 100).toFixed(2))],
-       ['nov', parseFloat((parseInt(document.getElementsByClassName("columna6")[0].value) /parseInt(document.getElementsByClassName("columna6")[1].value)* 100).toFixed(2))],
-       ['dic', parseFloat((parseInt(document.getElementsByClassName("columna7")[0].value) /parseInt(document.getElementsByClassName("columna7")[1].value)* 100).toFixed(2))],
-       ['ENE', parseFloat((parseInt(document.getElementsByClassName("columna8")[0].value) /parseInt(document.getElementsByClassName("columna8")[1].value)* 100).toFixed(2))],
-       ['FEB', parseFloat((parseInt(document.getElementsByClassName("columna9")[0].value) /parseInt(document.getElementsByClassName("columna9")[1].value)* 100).toFixed(2))],
-       ['MAR', parseFloat((parseInt(document.getElementsByClassName("columna10")[0].value)/parseInt(document.getElementsByClassName("columna10")[1].value)*100).toFixed(2))],
-       ['ABR', parseFloat((parseInt(document.getElementsByClassName("columna11")[0].value)/parseInt(document.getElementsByClassName("columna11")[1].value)*100).toFixed(2))],
-       ['MAY', parseFloat((parseInt(document.getElementsByClassName("columna12")[0].value)/parseInt(document.getElementsByClassName("columna12")[1].value)*100).toFixed(2))]
-     ]);
-     var options = {
-       title: '% salario de canasta'
-     };
-     // alert(document.getElementsByClassName("fila0 columna1")[0].value);
-     // Dibujar el gráfico
-     new google.visualization.LineChart(
-     //ColumnChart sería el tipo de gráfico a dibujar
-       document.getElementById('GraficoGoogleChart-ejemplo-1')
-     ).draw(data, options);
-   }
+   var grafico = {};
+   grafico = (function(){
+   //privada
+   //publica
+   return {
+        dibujarGrafico: function(setDatos) {
+            var data = google.visualization.arrayToDataTable(setDatos);
+            var options = {
+            legend: { position: 'in' },
+            vAxis:{baseline: '100'},
+            colors:['#99CC66','#CC6600']
+            };
+            new google.visualization.LineChart(
+            document.getElementById('GraficoGoogleChart-ejemplo-1')
+            ).draw(data, options);
+        },
+        dibujarGrafico2: function(setDatos) {
+            var data = google.visualization.arrayToDataTable(setDatos);
+            var options = {
+                orientation: 'horizontal',
+                legend: { position: 'in' },
+                colors:['#99CC66','#CC6600']
+            };
+            new google.visualization.BarChart(
+            document.getElementById('GraficoGoogleChart-ejemplo-1')
+            ).draw(data, options);
+        }
+   };
+   })();
+   var tabla = {};
+   tabla = (function(){
+   //privada
+        var columnas = 12;
+        var filas = 6;
+        var _meses=["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SET","OCT","NOV","DIC","ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SET","OCT","NOV","DIC"];
+        var meses=[
+            new Date(2013,00),new Date(2013,01),new Date(2013,02),new Date(2013,03),new Date(2013,04),new Date(2013,05),
+            new Date(2013,06),new Date(2013,07),new Date(2013,08),new Date(2013,09),new Date(2013,10),new Date(2013,11),
+            new Date(2014,00),new Date(2014,01),new Date(2014,02),new Date(2014,03),new Date(2014,04),new Date(2014,05),
+            new Date(2014,06),new Date(2014,07),new Date(2014,08),new Date(2014,09),new Date(2014,10),new Date(2014,11),
+            new Date(2015,00),new Date(2015,01),new Date(2015,02),new Date(2015,03),new Date(2015,04),new Date(2015,05),
+            new Date(2015,06),new Date(2015,07),new Date(2015,08),new Date(2015,09),new Date(2015,10),new Date(2015,11)
+            ];
+        function ponerFila(lindatos,fila){
+            fila = document.getElementsByClassName(fila);
+            for(j=0; j<12; j++){
+                fila[j].value=lindatos[j];
+            }
+        }
+   //publica
+   return {
+        personalizado : false,
+        dpersonalizado : [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null, null,null,null,null,null,null,null,null,null,null,null,null],
+        salvarPersonalizado: function(){
+            if (this.personalizado == true){
+                for(j=0; j<12; j++){
+                    this.dpersonalizado[j] = parseInt(fila0[j].value) > 0 ? parseInt(fila0[j].value) : null;
+                    this.dpersonalizado[j+12] = parseInt(fila2[j].value) > 0 ? parseInt(fila2[j].value) : null;
+                    this.dpersonalizado[j+24] = parseInt(fila4[j].value) > 0 ? parseInt(fila4[j].value) : null;
+                }
+            }
+        },
+        habilitar: function(sino){
+            fila0 = document.getElementsByClassName("fila0");
+            fila2 = document.getElementsByClassName("fila2");
+            fila4 = document.getElementsByClassName("fila4");
+            for(j=0; j<12; j++){
+                fila0[j].disabled = !sino;
+                fila2[j].disabled = !sino;
+                fila4[j].disabled = !sino;
+            }
+        },
+        ponerCanasta: function(canasta){
+            ponerFila(canasta, "fila1");
+            canasta = canasta.slice(12);
+            ponerFila(canasta, "fila3");
+            canasta = canasta.slice(12);
+            ponerFila(canasta, "fila5");
+        },
+        ponerSalarios: function(salarios){
+            if (this.personalizado == true){
+                salarios = this.dpersonalizado;
+            };
+            this.habilitar(false);
+            ponerFila(salarios, "fila0");
+            salarios = salarios.slice(12);
+            ponerFila(salarios, "fila2");
+            salarios = salarios.slice(12);
+            ponerFila(salarios, "fila4");
+        },
+        ponerTabla: function (){
+            var laTabla = '';
+            var primerfila = '<tr>';
+            for (var c = 0; c < columnas; c++){
+                primerfila = primerfila + '<th> ' + _meses[c] + ' </th>';
+            }
+            laTabla = '';
+            for (var f = 0; f < filas; f++){
+                laTabla = laTabla + '<tr>';
+                for (var c = 1; c <= columnas; c++){
+                    laTabla = laTabla +  '<td> <input type="text" class="inpt celda columna' + c + ' fila' + f + '" disabled/>  </td>';
+                }
+            }
+            primerfila = primerfila + "</th></tr>";
+            laTabla = '<table >' + primerfila + laTabla + '</table>';
+            laTabla = '<table> <tr><td><div><b> 2013</b></div><div>Salario:</div><div>Canasta:</div><div><b>  2014</b></div><div>Salario:</div><div>Canasta:</div><div><b> 2015</b></div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
+            document.write(laTabla);
+        },
+        generarData: function(){
+            var dataA = [];
+                var filaF=[[{label:'Mes', id:'mes', type:'date'}, {label:'% de la canasta', id:'porcien',type:'number'}]];
+                var m = 0;
+                for(j=0; j<6; j=j+2){
+                   for(k = 1 ; k<=columnas; k++){
+                       valor = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[j].value) /parseInt(document.getElementsByClassName("columna"+k)[j+1].value)* 100).toFixed(2));
+                       filaF.push([meses[k-1+m], valor]);
+                   }
+                   m = m + 12;
+                }
+                dataA.push(filaF);
+            return dataA;
+        },
+        generarData2: function(){
+            var dataA = [];
+                var filaF=[[{label:'Mes', id:'mes', type:'date'}, {label:'Salario', id:'salario',type:'number'}, {label:'Canasta', id:'canasta',type:'number'}]];
+                var m = 0;
+                for(j=0; j<6; j=j+2){ 
+                   for(k=1; k<=columnas; k++){
+                       valor = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[j].value) ).toFixed(2));
+                       valor2 = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[j+1].value) ).toFixed(2));
+                       filaF.push([meses[k-1+m], valor, valor2]);
+                   }
+                   m = m + 12;
+                }
+                dataA.push(filaF);
+            return dataA;
+        }
+   };
+   })();
+   var datos = {};
+   datos = (function(){
+   //privada
+   //publica
+   return {
+        vacio: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null, null,null,null,null,null,null,null,null,null,null,null,null],
+        canasta3: [3207, 3236, 3290, 3328, 3373, 3430, 3526, 3610, 3680, 3751, 3824, 3899, 4036, 4187, 4304, 4432, 4550,4664,4782,4914,5017,5101,5211,5282, 5389,null,null,null,null,null,null,null,null,null,null,null],
+        canasta5bis: [7317, 7377, 7521, 7644, 7752, 7902, 8144, 8351, 8534, 8745, 8905, 9087, 9378, 9802, 10117, 10454, 10711,10943,11148,11421,11674,11877,12122,12282, 12527,null,null,null,null,null,null,null,null,null,null,null],
+        contratado: [4400,4400,4400,4400,4400,5200, 5200, 5200, 5200, 5200, 5200, 5200, 5600, 5600, 5600, 5600, 5600,6200,6200,6200,6200,6200,6200,6200, 6635,6635,6635,null,null,null,null,null,null,null,null,null],
+        administrativo: [6721, 6721, 6721, 6721, 7221,7221, 7221, 7821, 7821, 7821, 7821, 7821, 8821, 8621, 8621, 9197, 9197,9197, 9197, 9627, 9627, 9627, 10228, 11819, 13819,11819,11819,null,null,null,null,null,null,null,null,null],
+        profesional: [8085, 8085, 8085, 8085, 8585, 8585, 8585, 9185, 9185, 9185, 9185, 9185, 10185, 9985, 9985, 10783, 10783, 10783, 10783, 11283, 11283, 11283, 11983, 13627, 15627,13627,13627,null,null,null,null,null,null,null,null,null]
+   };
+   })();
  </script> 
 <script>
-function ponerTabla (){
-    var columnas = 12;
-    var filas = 2;
-    var laTabla = '';
-    var primerfila = '<tr>';
-    var meses=["jun","jul","ago","set","oct","nov","dic","ENE","FEB","MAR","ABR","MAY"];
-    for (var c = 0; c < columnas; c++){
-        primerfila = primerfila + '<th> ' + meses[c] + ' </th>';
-    }
-    laTabla = '';
-    for (var f = 0; f < filas; f++){
-        laTabla = laTabla + '<tr>';
-        for (var c = 1; c <= columnas; c++){
-            laTabla = laTabla +  '<td> <input type="text" class="celda columna' + c + ' fila' + f + '" disabled/>  </td>';
-        }
-    }
-    primerfila = primerfila + "</th></tr>";
-    laTabla = '<table >' + primerfila + laTabla + '</table>';
-    laTabla = '<table> <tr><td><div> Mes:</div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
-    document.write(laTabla);
+function ponerComentario(){
+    document.getElementsByClassName("overlay")[0].style.visibility = "visible";
 }
-function ponerCanasta(canasta){
-    ponerFila(canasta, "fila1");
-}
-function ponerSalarios(salarios){
-    habilitar(false);
-    ponerFila(salarios, "fila0");
-}
-function ponerFila(canasta,fila){
-    fila2 = document.getElementsByClassName(fila);
-    for(j=0; j<12; j++){
-        fila2[j].value=canasta[j];
-    }
+function sacarComentario(){
+    document.getElementsByClassName("overlay")[0].style.visibility = "hidden";
 }
 function marcar(boton){
-    document.getElementById("b1").style.backgroundColor = "";
     document.getElementById("b2").style.backgroundColor = "";
     document.getElementById("b3").style.backgroundColor = "";
+    document.getElementById("b5").style.backgroundColor = "";
     document.getElementById("b4").style.backgroundColor = "";
-    document.getElementById(boton).style.backgroundColor = "orange";
+    document.getElementById(boton).style.backgroundColor = "#CC6600";
+    switch(boton){
+        case "b2": document.getElementsByClassName("notasalario")[0].innerHTML = "Salario testigo de contratado";sacarComentario();break;
+        case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";ponerComentario();break;
+        case "b5": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";ponerComentario();break;
+        case "b4": document.getElementsByClassName("notasalario")[0].innerHTML = "Completa con tus datos y grafica.";sacarComentario();break;
+    }
+    graficarIndicado();
 }
 function marcarC(boton){
     document.getElementById("c1").style.backgroundColor = "";
     document.getElementById("c2").style.backgroundColor = "";
-    document.getElementById(boton).style.backgroundColor = "orange";
+    document.getElementById(boton).style.backgroundColor = "#99CC66";
+    switch(boton){
+        case "c1": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 3 + alquiler del Hogar 5:</b> hogar unipersonal de un varón de 25 años, activo + alquiler del Hogar 5 (matrimonio de dos adultos mayores de 25 años, activos, sin hijos).";break;
+        case "c2": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 5 bis:</b> Matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.";break;
+    }
+    graficarIndicado();
 }
-function habilitar(sino){
-    fila1 = document.getElementsByClassName("fila0");
-    for(j=0; j<12; j++){
-        fila1[j].disabled = !sino;
+function marcarTipo(tipo){
+    document.getElementById("lineas").style.backgroundColor = "";
+    document.getElementById("barras").style.backgroundColor = "";
+    document.getElementById(tipo).style.backgroundColor = "#99CC66";
+}
+function graficarIndicado(){
+    var losdatos = tabla.generarData()[0];
+    if (document.getElementsByName("selgraf")[0].checked == true){
+        losdatos = tabla.generarData()[0];
+    } else {
+        losdatos = tabla.generarData2()[0];
+    }
+    if (document.getElementById("lineas").style.backgroundColor !== ""){
+        grafico.dibujarGrafico(losdatos);
+    } else{
+        grafico.dibujarGrafico2(losdatos);
     }
 }
-(function(){
-}());
+window.onload=function(){grafico.dibujarGrafico(tabla.generarData()[0]);};
 </script>
-<p class="titulo">Gráfico de Salario sobre Canasta</p>
+<div class="titulo">
+Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
 <div class="instrucciones">
 <p>Selecciona un set de datos para salarios, otro para canasta y presiona "Graficar".
-<p>Tambíen podes probar con tus propios datos en la fila de salario.
-<p>Para calcular el poder adquisitivo de nuestro salario (según Planta o Contratado), seguí los siguientes pasos: 
-<p>1- cargá  el valor de tu salario en la celda/s del mes/es, 
-<p>2- elegí la canasta mas representativa segun la composición de tu hogar (puede ser la del Hogar 3 o Hogar 5 bis), 
-<p>3- presioná Graficar y listo!
+<p>Podes obtener el gráfico a partir de salarios ya cargados de contratados o de planta permanente (casos testigos).
+<p>También podes probar con tus propios datos, ingresándolos en la fila de salario. Para calcular el poder adquisitivo de <b>TU SALARIO</b> (para Planta permanente o Contratado), seguí los siguientes pasos:
+<p>1-presioná el botón de <b>Personalizado</b>
+<p>2- cargá el valor de TU SALARIO en la celda/s del mes/es,
+<p>3- elegí la canasta más representativa según la composición de tu hogar, <b>presionando en el botón correspondiente a las canastas.</b> Puede ser la del Hogar 3 (unipersonal) o Hogar 5 bis (familiar), 
+<p>4- presioná <b>Graficar</b> y listo! (fijate que el grafico puede ser de <b>líneas</b> o de <b>barras</b>)
 </div>
 <form>
 <script>
-ponerTabla();
-var canasta3 = [2083.23, 2150.19, 2206.87, 2251.75, 2302.98, 2352.61, 2402.43, 2517.65, 2638.34, 2721.77, 2803.85, 2884];
-var canasta5bis = [7902, 8144, 8351, 8534, 8745, 8905, 9087, 9378, 9802, 10116, 10454, 10710];
-var listador =[4500, 4500, 4500, 4800, 4800, 4800, 4800, 5000, 5000, 5000, 5000, 5000];
-var contratado =[5200, 5200, 5200, 5200, 5200, 5200, 5200, 5600, 5600, 5600, 5600, 5600];
-var administrativo = [7221, 7221, 7821, 7821, 7821, 7821, 7821, 8821, 8621, 8621, 9233, 9233];
-ponerSalarios(listador);
-ponerCanasta(canasta3);
-</script>
-<p>
-    <input id='b1' type='button' value='Listador' onclick='ponerSalarios(listador); marcar("b1");'>
-    <input id='b2' type='button' value='Contratado' onclick='ponerSalarios(contratado); marcar("b2");'>
-    <input id='b3' type='button' value='Planta Adm.' onclick='ponerSalarios(administrativo); marcar("b3");'>
-    <input id='b4' type='button' value='Personalizado' onclick='habilitar(true); marcar("b4");'>
-<p>
-    <input id='c1' type='button' value='Canasta 3' title='Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda.' onclick='ponerCanasta(canasta3); marcarC("c1");'>
-    <input id='c2' type='button' value='Canasta 5Bis' title='Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, 
-activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.' onclick='ponerCanasta(canasta5bis); marcarC("c2");'>
-<p><input type='button' value='Graficar' onclick='dibujarGrafico();'>
-<script>
-marcar("b1");
-marcarC("c1");
+tabla.ponerTabla();
+tabla.ponerSalarios(datos.contratado);
+tabla.ponerCanasta(datos.canasta3);
 </script>
 </form>
-<div id="GraficoGoogleChart-ejemplo-1" style="width: 800px; height: 600px">
+<div style="width: 700px; height: 170px; ">
+<div class="botones">
+    <div class="lbotones2">
+        <input class="btn2" id="b2" onclick="tabla.salvarPersonalizado(); tabla.personalizado=false; tabla.ponerSalarios(datos.contratado); marcar(&quot;b2&quot;);" type="button" value="Contratado" /> <input class="btn2" id="b3" onclick="tabla.salvarPersonalizado(); tabla.personalizado=false; tabla.ponerSalarios(datos.administrativo); marcar(&quot;b3&quot;);" type="button" value="Planta Adm." /> <input class="btn2" id="b5" onclick="tabla.salvarPersonalizado(); tabla.personalizado=false; tabla.ponerSalarios(datos.profesional); marcar(&quot;b5&quot;);" type="button" value="Planta Prof." /> <input class="btn2" id="b4" onclick="tabla.salvarPersonalizado(); tabla.personalizado=true; tabla.ponerSalarios(datos.vacio); tabla.habilitar(true); marcar(&quot;b4&quot;);" type="button" value="Personalizado" />
+    </div>
+    <div class="lbotones3">
+        <input class="btn" id="c1" onclick="tabla.ponerCanasta(datos.canasta3); marcarC(&quot;c1&quot;);" title="Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda." type="button" value="Canasta 3 + Alq." />
+        <input class="btn" id="c2" onclick="tabla.ponerCanasta(datos.canasta5bis); marcarC(&quot;c2&quot;);" title="Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda." type="button" value="Canasta 5Bis" />
+    </div>
+</div>
+<div class="notas">
+        <div class="notasalario">
+        salario</div>
+        <div class="notacanasta">
+        canasta</div>
+</div>
+</div>
+<div class="series">
+    <input class="btn" onclick="graficarIndicado();" type="button" value="Graficar" /> <input type="radio" name="selgraf" value="pocentual" checked> % de la canasta <input type="radio" name="selgraf" value="absoluta"> salario - canasta
+</div>
+<div class="botones-tg">
+    <a class="tipografico" href="https://www.blogger.com/blogger.g?blogID=4965291061104686328#" id="lineas" onclick="marcarTipo('lineas');graficarIndicado();return false;" title="Grafico de lineas">Lineas</a> <a class="tipografico" href="https://www.blogger.com/blogger.g?blogID=4965291061104686328#" id="barras" onclick="marcarTipo('barras');graficarIndicado();return false;" title="Grafico de barras">Barras</a>
+</div>
+<div class="chartWithOverlay">
+<div class="grafico" id="GraficoGoogleChart-ejemplo-1" style="height: 400px; width: 600px;">
+</div>
+<div class="overlay">
+    <div style="font-family:'Arial'; font-size: 18px;">Enero 2015 : incluye suma de $2000 pagada por única vez</div>
+</div>
+</div>
+<script>
+marcar("b2");
+marcarC("c1");
+marcarTipo('lineas');
+</script>
 </div>
 </body>
 </html>
+</head>
+<body>
