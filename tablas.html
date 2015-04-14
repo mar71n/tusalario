@@ -162,7 +162,6 @@ body{
             var chart_div = document.getElementById('descargar_png');
             google.visualization.events.addListener(grafico, 'ready', function () {
                 chart_div.innerHTML = '<a class="tipografico" href="' + grafico.getImageURI() + '" id="lineas" title="Descargar archivo" target="_blank">Descargar grafico</a>';
-                console.log(chart_div.innerHTML);
             });
             grafico.draw(data, options);
         },
@@ -179,7 +178,6 @@ body{
             var chart_div = document.getElementById('descargar_png');
             google.visualization.events.addListener(grafico, 'ready', function () {
                 chart_div.innerHTML = '<a class="tipografico" href="' + grafico.getImageURI() + '" id="lineas" title="Descargar archivo" target="_blank">Descargar grafico</a>';
-                console.log(chart_div.innerHTML);
             });
             grafico.draw(data, options);
         }
