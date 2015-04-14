@@ -156,9 +156,15 @@ body{
             vAxis:{baseline: '100'},
             colors:['#99CC66','#CC6600']
             };
-            new google.visualization.LineChart(
+            var grafico = new google.visualization.LineChart(
             document.getElementById('GraficoGoogleChart-ejemplo-1')
-            ).draw(data, options);
+            );
+            var chart_div = document.getElementById('descargar_png');
+            google.visualization.events.addListener(grafico, 'ready', function () {
+                chart_div.innerHTML = '<a class="tipografico" href="' + grafico.getImageURI() + '" id="lineas" title="Descargar archivo" target="_blank">Descargar grafico</a>';
+                console.log(chart_div.innerHTML);
+            });
+            grafico.draw(data, options);
         },
         dibujarGrafico2: function(setDatos) {
             var data = google.visualization.arrayToDataTable(setDatos);
@@ -167,9 +173,15 @@ body{
                 legend: { position: 'in' },
                 colors:['#99CC66','#CC6600']
             };
-            new google.visualization.BarChart(
+            var grafico = new google.visualization.BarChart(
             document.getElementById('GraficoGoogleChart-ejemplo-1')
-            ).draw(data, options);
+            );
+            var chart_div = document.getElementById('descargar_png');
+            google.visualization.events.addListener(grafico, 'ready', function () {
+                chart_div.innerHTML = '<a class="tipografico" href="' + grafico.getImageURI() + '" id="lineas" title="Descargar archivo" target="_blank">Descargar grafico</a>';
+                console.log(chart_div.innerHTML);
+            });
+            grafico.draw(data, options);
         }
    };
    })();
@@ -395,6 +407,8 @@ tabla.ponerCanasta(datos.canasta3);
 <div class="overlay">
     <div style="font-family:'Arial'; font-size: 18px;">Enero 2015 : incluye suma de $2000 pagada por única vez</div>
 </div>
+</div>
+<div id="descargar_png">
 </div>
 <script>
 marcar("b2");
