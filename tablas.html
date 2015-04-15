@@ -304,57 +304,55 @@ body{
         profesional: [8085, 8085, 8085, 8085, 8585, 8585, 8585, 9185, 9185, 9185, 9185, 9185, 10185, 9985, 9985, 10783, 10783, 10783, 10783, 11283, 11283, 11283, 11983, 13627, 15627,13627,13627,null,null,null,null,null,null,null,null,null]
    };
    })();
- </script> 
-<script>
-function ponerComentario(){
-    document.getElementsByClassName("overlay")[0].style.visibility = "visible";
-}
-function sacarComentario(){
-    document.getElementsByClassName("overlay")[0].style.visibility = "hidden";
-}
-function marcar(boton){
-    document.getElementById("b2").style.backgroundColor = "";
-    document.getElementById("b3").style.backgroundColor = "";
-    document.getElementById("b5").style.backgroundColor = "";
-    document.getElementById("b4").style.backgroundColor = "";
-    document.getElementById(boton).style.backgroundColor = "#CC6600";
-    switch(boton){
-        case "b2": document.getElementsByClassName("notasalario")[0].innerHTML = "Salario testigo de contratado";sacarComentario();break;
-        case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";ponerComentario();break;
-        case "b5": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";ponerComentario();break;
-        case "b4": document.getElementsByClassName("notasalario")[0].innerHTML = "Completa con tus datos y grafica.";sacarComentario();break;
-    }
-    graficarIndicado();
-}
-function marcarC(boton){
-    document.getElementById("c1").style.backgroundColor = "";
-    document.getElementById("c2").style.backgroundColor = "";
-    document.getElementById(boton).style.backgroundColor = "#99CC66";
-    switch(boton){
-        case "c1": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 3 + alquiler del Hogar 5:</b> hogar unipersonal de un varón de 25 años, activo + alquiler del Hogar 5 (matrimonio de dos adultos mayores de 25 años, activos, sin hijos).";break;
-        case "c2": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 5 bis:</b> Matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.";break;
-    }
-    graficarIndicado();
-}
-function marcarTipo(tipo){
-    document.getElementById("lineas").style.backgroundColor = "";
-    document.getElementById("barras").style.backgroundColor = "";
-    document.getElementById(tipo).style.backgroundColor = "#99CC66";
-}
-function graficarIndicado(){
-    var losdatos = tabla.generarData()[0];
-    if (document.getElementsByName("selgraf")[0].checked == true){
-        losdatos = tabla.generarData()[0];
-    } else {
-        losdatos = tabla.generarData2()[0];
-    }
-    if (document.getElementById("lineas").style.backgroundColor !== ""){
-        grafico.dibujarGrafico(losdatos);
-    } else{
-        grafico.dibujarGrafico2(losdatos);
-    }
-}
-window.onload=function(){grafico.dibujarGrafico(tabla.generarData()[0]);};
+   function ponerComentario(){
+       document.getElementsByClassName("overlay")[0].style.visibility = "visible";
+   }
+   function sacarComentario(){
+       document.getElementsByClassName("overlay")[0].style.visibility = "hidden";
+   }
+   function marcar(boton){
+       document.getElementById("b2").style.backgroundColor = "";
+       document.getElementById("b3").style.backgroundColor = "";
+       document.getElementById("b5").style.backgroundColor = "";
+       document.getElementById("b4").style.backgroundColor = "";
+       document.getElementById(boton).style.backgroundColor = "#CC6600";
+       switch(boton){
+           case "b2": document.getElementsByClassName("notasalario")[0].innerHTML = "Salario testigo de contratado";sacarComentario();break;
+           case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";ponerComentario();break;
+           case "b5": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";ponerComentario();break;
+           case "b4": document.getElementsByClassName("notasalario")[0].innerHTML = "Completa con tus datos y grafica.";sacarComentario();break;
+       }
+       graficarIndicado();
+   }
+   function marcarC(boton){
+       document.getElementById("c1").style.backgroundColor = "";
+       document.getElementById("c2").style.backgroundColor = "";
+       document.getElementById(boton).style.backgroundColor = "#99CC66";
+       switch(boton){
+           case "c1": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 3 + alquiler del Hogar 5:</b> hogar unipersonal de un varón de 25 años, activo + alquiler del Hogar 5 (matrimonio de dos adultos mayores de 25 años, activos, sin hijos).";break;
+           case "c2": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 5 bis:</b> Matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.";break;
+       }
+       graficarIndicado();
+   }
+   function marcarTipo(tipo){
+       document.getElementById("lineas").style.backgroundColor = "";
+       document.getElementById("barras").style.backgroundColor = "";
+       document.getElementById(tipo).style.backgroundColor = "#99CC66";
+   }
+   function graficarIndicado(){
+       var losdatos = tabla.generarData()[0];
+       if (document.getElementsByName("selgraf")[0].checked == true){
+           losdatos = tabla.generarData()[0];
+       } else {
+           losdatos = tabla.generarData2()[0];
+       }
+       if (document.getElementById("lineas").style.backgroundColor !== ""){
+           grafico.dibujarGrafico(losdatos);
+       } else{
+           grafico.dibujarGrafico2(losdatos);
+       }
+   }
+   window.onload=function(){grafico.dibujarGrafico(tabla.generarData()[0]);};
 </script>
 <div class="titulo">
 Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
