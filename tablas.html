@@ -142,7 +142,7 @@ body{
 <script src="https://www.google.com/jsapi" type="text/javascript"></script> 
 <script type="text/javascript">
    google.load("visualization", "1", {packages:["corechart"]});
-   google.setOnLoadCallback(function(){todo = cargartodo();});
+   google.setOnLoadCallback(function(){todo = cargartodo();todo.armar();});
    function cargartodo(){
    return{
    //var grafico = {};
@@ -368,8 +368,6 @@ body{
                       }
 
    }};
-   window.onload=function(){todo.armar();
-                           };
 </script>
 <div class="titulo">
 Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
