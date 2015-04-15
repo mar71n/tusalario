@@ -160,17 +160,6 @@ body{
                 chart_div.innerHTML = '<a class="tipografico" href="' + grafico.getImageURI() + '" id="lineas" title="Descargar archivo" target="_blank">Descargar grafico</a>';
             });
             grafico.draw(data, options);
-        },
-        dibujarGrafico2: function(tipograf,setDatos,options) {
-            var data = google.visualization.arrayToDataTable(setDatos);
-            var grafico = new google.visualization[tipograf](
-            document.getElementById('GraficoGoogleChart-ejemplo-1')
-            );
-            var chart_div = document.getElementById('descargar_png');
-            google.visualization.events.addListener(grafico, 'ready', function () {
-                chart_div.innerHTML = '<a class="tipografico" href="' + grafico.getImageURI() + '" id="lineas" title="Descargar archivo" target="_blank">Descargar grafico</a>';
-            });
-            grafico.draw(data, options);
         }
    };
    })(),
@@ -354,7 +343,7 @@ body{
        if (document.getElementById("lineas").style.backgroundColor !== ""){
            this.grafico.dibujarGrafico("LineChart",losdatos, this.options_linea);
        } else{
-           this.grafico.dibujarGrafico2("BarChart",losdatos, this.options_bar);
+           this.grafico.dibujarGrafico("BarChart",losdatos, this.options_bar);
        }
    },
    armar : function(){
