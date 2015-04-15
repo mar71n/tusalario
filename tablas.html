@@ -150,14 +150,14 @@ body{
    //privada
    //publica
    return {
-        dibujarGrafico: function(setDatos) {
+        dibujarGrafico: function(tipograf,setDatos) {
             var data = google.visualization.arrayToDataTable(setDatos);
             var options = {
             legend: { position: 'in' },
             vAxis:{baseline: '100'},
             colors:['#CC6600', '#99CC66']
             };
-            var grafico = new google.visualization.LineChart(
+            var grafico = new google.visualization[tipograf](
             document.getElementById('GraficoGoogleChart-ejemplo-1')
             );
             var chart_div = document.getElementById('descargar_png');
@@ -166,14 +166,14 @@ body{
             });
             grafico.draw(data, options);
         },
-        dibujarGrafico2: function(setDatos) {
+        dibujarGrafico2: function(tipograf,setDatos) {
             var data = google.visualization.arrayToDataTable(setDatos);
             var options = {
                 orientation: 'horizontal',
                 legend: { position: 'in' },
                 colors:['#CC6600', '#99CC66']
             };
-            var grafico = new google.visualization.BarChart(
+            var grafico = new google.visualization[tipograf](
             document.getElementById('GraficoGoogleChart-ejemplo-1')
             );
             var chart_div = document.getElementById('descargar_png');
@@ -352,9 +352,9 @@ body{
            losdatos = this.tabla.generarData2()[0];
        }
        if (document.getElementById("lineas").style.backgroundColor !== ""){
-           this.grafico.dibujarGrafico(losdatos);
+           this.grafico.dibujarGrafico("LineChart",losdatos);
        } else{
-           this.grafico.dibujarGrafico2(losdatos);
+           this.grafico.dibujarGrafico2("BarChart",losdatos);
        }
    },
    armar : function(){
@@ -364,7 +364,7 @@ body{
                       this.marcar("b2");
                       this.marcarC("c1");
                       this.marcarTipo('lineas');
-                      this.grafico.dibujarGrafico(this.tabla.generarData()[0]);
+                      this.grafico.dibujarGrafico("LineChart",this.tabla.generarData()[0]);
                       }
 
    }};
