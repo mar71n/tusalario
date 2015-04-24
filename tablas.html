@@ -4,9 +4,30 @@
 <body>
 <div class='l0sd3st3rr4d0s'>
 <style>
+#esperando{
+    max-width:700px;
+    background-color: #555;
+    box-sizing: border-box;
+    color: #fff; 
+    text-align: center; 
+    text-shadow: 0 1px 3px ;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;  
+    font-size: 14px;  
+    line-height: 11.42857143;
+    border-radius: 20px;
+}
+.instrucciones{
+    padding: 15px;
+    box-shadow: 1px 1px #aeaeae;
+    border-radius: 20px;
+    color: #222;
+    background-color: #d2d2d2;
+    font-size: 0.9em;
+    max-width:700px;
+}
 .chartWithOverlay {
        position: relative;
-       width: 700px;
+       max-width: 700px;
 }
 .overlay {
        width: 200px;
@@ -129,48 +150,80 @@ body{
 .fila0, .fila2, .fila4{
     background-color: #CC6600;
 }
-.instrucciones{
-    padding: 15px;
-    box-shadow: 1px 1px #aeaeae;
-    border-radius: 20px;
-    color: #222;
-    background-color: #d2d2d2;
-    font-size: 0.8em;
-    width:700px;
-}
 </style>
+<div id="esperando" style="display:block;">
+     <h1> Cargando gráficos .....</h1>
+</div>
+<div id="tusalario" style="display:none">
+<div class="titulo">
+Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
+<div class="instrucciones">
+<p>Selecciona un set de datos para salarios, otro para canasta y presiona "Graficar".
+<p>Podes obtener el gráfico a partir de salarios ya cargados de contratados o de planta permanente (casos testigos).
+<p>También podes probar con tus propios datos, ingresándolos en la fila de salario. Para calcular el poder adquisitivo de <b>TU SALARIO</b> (para Planta permanente o Contratado), seguí los siguientes pasos:
+<p>1-presioná el botón de <b>Personalizado</b>
+<p>2- cargá el valor de TU SALARIO en la celda/s del mes/es,
+<p>3- elegí la canasta más representativa según la composición de tu hogar, <b>presionando en el botón correspondiente a las canastas.</b> Puede ser la del Hogar 3 (unipersonal) o Hogar 5 bis (familiar), 
+<p>4- presioná <b>Graficar</b> y listo! (fijate que el grafico puede ser de <b>líneas</b> o de <b>barras</b>)
+</div>
+<form>
+<div id="tabla"></div>
+<div id="salarios"></div>
+<div id="canastas"></div>
+</form>
+<div style="width: 700px; height: 170px; ">
+<div class="botones">
+    <div class="lbotones2">
+        <input class="btn2" id="b2" onclick="todo.tabla.salvarPersonalizado(); todo.tabla.personalizado=false; todo.tabla.ponerSalarios(todo.datos.contratado); todo.marcar(&quot;b2&quot;);" type="button" value="Contratado" /> <input class="btn2" id="b3" onclick="todo.tabla.salvarPersonalizado(); todo.tabla.personalizado=false; todo.tabla.ponerSalarios(todo.datos.administrativo); todo.marcar(&quot;b3&quot;);" type="button" value="Planta Adm." /> <input class="btn2" id="b5" onclick="todo.tabla.salvarPersonalizado(); todo.tabla.personalizado=false; todo.tabla.ponerSalarios(todo.datos.profesional); todo.marcar(&quot;b5&quot;);" type="button" value="Planta Prof." /> <input class="btn2" id="b4" onclick="todo.tabla.salvarPersonalizado(); todo.tabla.personalizado=true; todo.tabla.ponerSalarios(todo.datos.vacio); todo.tabla.habilitar(true); todo.marcar(&quot;b4&quot;);" type="button" value="Personalizado" />
+    </div>
+    <div class="lbotones3">
+        <input class="btn" id="c1" onclick="todo.tabla.ponerCanasta(todo.datos.canasta3); todo.marcarC(&quot;c1&quot;);" title="Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda." type="button" value="Canasta 3 + Alq." />
+        <input class="btn" id="c2" onclick="todo.tabla.ponerCanasta(todo.datos.canasta5bis); todo.marcarC(&quot;c2&quot;);" title="Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda." type="button" value="Canasta 5Bis" />
+    </div>
+</div>
+<div class="notas">
+        <div class="notasalario">
+        salario</div>
+        <div class="notacanasta">
+        canasta</div>
+</div>
+</div>
+<div class="series">
+    <input class="btn" onclick="todo.graficarIndicado();" type="button" value="Graficar" /> <input type="radio" name="selgraf" value="pocentual" checked> % de la canasta <input type="radio" name="selgraf" value="absoluta"> salario - canasta
+</div>
+<div class="botones-tg">
+    <div class="tipografico" id="lineas" onclick="todo.marcarTipo('lineas');todo.graficarIndicado();return false;" title="Grafico de lineas" style="display:inline">Lineas</div> 
+    <div class="tipografico" id="barras" onclick="todo.marcarTipo('barras');todo.graficarIndicado();return false;" title="Grafico de barras" style="display:inline">Barras</div>
+</div>
+<div class="chartWithOverlay">
+<div class="grafico" id="GraficoGoogleChart-ejemplo-1" style="height: 400px; width: 600px;">
+</div>
+<div class="overlay">
+    <div style="font-family:'Arial'; font-size: 18px;">Enero 2015 : incluye suma de $2000 pagada por única vez</div>
+</div>
+</div>
+<div id="descargar_png">
+</div>
+</div> <!-- tusalario      -->
 <script src="https://www.google.com/jsapi" type="text/javascript"></script> 
 <script type="text/javascript">
    google.load("visualization", "1", {packages:["corechart"]});
-   var grafico = {};
-   grafico = (function(){
+   google.setOnLoadCallback(function(){
+                                       setTimeout(function(){document.getElementById("esperando").style.display="none";},200);
+                                       document.getElementById("tusalario").style.display="block";
+                                       todo = cargartodo();
+                                       todo.armar();
+                                       });
+   function cargartodo(){
+   return{
+   //var grafico = {};
+   grafico :(function(){
    //privada
    //publica
    return {
-        dibujarGrafico: function(setDatos) {
+        dibujarGrafico: function(tipograf,setDatos,options) {
             var data = google.visualization.arrayToDataTable(setDatos);
-            var options = {
-            legend: { position: 'in' },
-            vAxis:{baseline: '100'},
-            colors:['#CC6600', '#99CC66']
-            };
-            var grafico = new google.visualization.LineChart(
-            document.getElementById('GraficoGoogleChart-ejemplo-1')
-            );
-            var chart_div = document.getElementById('descargar_png');
-            google.visualization.events.addListener(grafico, 'ready', function () {
-                chart_div.innerHTML = '<a class="tipografico" href="' + grafico.getImageURI() + '" id="lineas" title="Descargar archivo" target="_blank">Descargar grafico</a>';
-            });
-            grafico.draw(data, options);
-        },
-        dibujarGrafico2: function(setDatos) {
-            var data = google.visualization.arrayToDataTable(setDatos);
-            var options = {
-                orientation: 'horizontal',
-                legend: { position: 'in' },
-                colors:['#CC6600', '#99CC66']
-            };
-            var grafico = new google.visualization.BarChart(
+            var grafico = new google.visualization[tipograf](
             document.getElementById('GraficoGoogleChart-ejemplo-1')
             );
             var chart_div = document.getElementById('descargar_png');
@@ -180,9 +233,10 @@ body{
             grafico.draw(data, options);
         }
    };
-   })();
-   var tabla = {};
-   tabla = (function(){
+   })(),
+
+   //var tabla = {};
+   tabla : (function(){
    //privada
         var columnas = 12;
         var filas = 6;
@@ -258,7 +312,8 @@ body{
             primerfila = primerfila + "</th></tr>";
             laTabla = '<table >' + primerfila + laTabla + '</table>';
             laTabla = '<table> <tr><td><div><b> 2013</b></div><div>Salario:</div><div>Canasta:</div><div><b>  2014</b></div><div>Salario:</div><div>Canasta:</div><div><b> 2015</b></div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
-            document.write(laTabla);
+            //document.write(laTabla);
+            document.getElementById("tabla").innerHTML = laTabla;
         },
         generarData: function(){
             var dataA = [];
@@ -290,9 +345,9 @@ body{
             return dataA;
         }
    };
-   })();
-   var datos = {};
-   datos = (function(){
+   })(),
+   //var datos = {};
+   datos : (function(){
    //privada
    //publica
    return {
@@ -303,28 +358,28 @@ body{
         administrativo: [6721, 6721, 6721, 6721, 7221,7221, 7221, 7821, 7821, 7821, 7821, 7821, 8821, 8621, 8621, 9197, 9197,9197, 9197, 9627, 9627, 9627, 10228, 11819, 13819,11819,11819,13560,null,null,null,null,null,null,null,null],
         profesional: [8085, 8085, 8085, 8085, 8585, 8585, 8585, 9185, 9185, 9185, 9185, 9185, 10185, 9985, 9985, 10783, 10783, 10783, 10783, 11283, 11283, 11283, 11983, 13627, 15627,13627,13627,15638,null,null,null,null,null,null,null,null]
    };
-   })();
-   function ponerComentario(){
+   })(),
+   ponerComentario: function(){
        document.getElementsByClassName("overlay")[0].style.visibility = "visible";
-   }
-   function sacarComentario(){
+   },
+   sacarComentario: function(){
        document.getElementsByClassName("overlay")[0].style.visibility = "hidden";
-   }
-   function marcar(boton){
+   },
+   marcar: function(boton){
        document.getElementById("b2").style.backgroundColor = "";
        document.getElementById("b3").style.backgroundColor = "";
        document.getElementById("b5").style.backgroundColor = "";
        document.getElementById("b4").style.backgroundColor = "";
        document.getElementById(boton).style.backgroundColor = "#CC6600";
        switch(boton){
-           case "b2": document.getElementsByClassName("notasalario")[0].innerHTML = "Salario testigo de contratado";sacarComentario();break;
-           case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";ponerComentario();break;
-           case "b5": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";ponerComentario();break;
-           case "b4": document.getElementsByClassName("notasalario")[0].innerHTML = "Completa con tus datos y grafica.";sacarComentario();break;
+           case "b2": document.getElementsByClassName("notasalario")[0].innerHTML = "Salario testigo de contratado";this.sacarComentario();break;
+           case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";this.ponerComentario();break;
+           case "b5": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";this.ponerComentario();break;
+           case "b4": document.getElementsByClassName("notasalario")[0].innerHTML = "Completa con tus datos y grafica.";this.sacarComentario();break;
        }
-       graficarIndicado();
-   }
-   function marcarC(boton){
+       this.graficarIndicado();
+   },
+   marcarC: function(boton){
        document.getElementById("c1").style.backgroundColor = "";
        document.getElementById("c2").style.backgroundColor = "";
        document.getElementById(boton).style.backgroundColor = "#99CC66";
@@ -332,83 +387,48 @@ body{
            case "c1": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 3 + alquiler del Hogar 5:</b> hogar unipersonal de un varón de 25 años, activo + alquiler del Hogar 5 (matrimonio de dos adultos mayores de 25 años, activos, sin hijos).";break;
            case "c2": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 5 bis:</b> Matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.";break;
        }
-       graficarIndicado();
-   }
-   function marcarTipo(tipo){
+       this.graficarIndicado();
+   },
+   marcarTipo: function(tipo){
        document.getElementById("lineas").style.backgroundColor = "";
        document.getElementById("barras").style.backgroundColor = "";
        document.getElementById(tipo).style.backgroundColor = "#99CC66";
-   }
-   function graficarIndicado(){
-       var losdatos = tabla.generarData()[0];
+   },
+   options_linea : {
+       legend: { position: 'in' },
+       vAxis:{baseline: '100'},
+       colors:['#CC6600', '#99CC66']
+   },
+   options_bar : {
+       orientation: 'horizontal',
+       legend: { position: 'in' },
+       colors:['#CC6600', '#99CC66']
+   },
+   graficarIndicado: function(){
+       var losdatos = this.tabla.generarData()[0];
        if (document.getElementsByName("selgraf")[0].checked == true){
-           losdatos = tabla.generarData()[0];
+           losdatos = this.tabla.generarData()[0];
        } else {
-           losdatos = tabla.generarData2()[0];
+           losdatos = this.tabla.generarData2()[0];
        }
        if (document.getElementById("lineas").style.backgroundColor !== ""){
-           grafico.dibujarGrafico(losdatos);
+           this.grafico.dibujarGrafico("LineChart",losdatos, this.options_linea);
        } else{
-           grafico.dibujarGrafico2(losdatos);
+           this.grafico.dibujarGrafico("BarChart",losdatos, this.options_bar);
        }
-   }
-   window.onload=function(){grafico.dibujarGrafico(tabla.generarData()[0]);};
+   },
+   armar : function(){
+                      this.tabla.ponerTabla();
+                      this.tabla.ponerSalarios(this.datos.contratado);
+                      this.tabla.ponerCanasta(this.datos.canasta3);
+                      this.marcar("b2");
+                      this.marcarC("c1");
+                      this.marcarTipo('lineas');
+                      this.grafico.dibujarGrafico("LineChart",this.tabla.generarData()[0], this.options_linea);
+                      }
+
+   }};
 </script>
-<div class="titulo">
-Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
-<div class="instrucciones">
-<p>Selecciona un set de datos para salarios, otro para canasta y presiona "Graficar".
-<p>Podes obtener el gráfico a partir de salarios ya cargados de contratados o de planta permanente (casos testigos).
-<p>También podes probar con tus propios datos, ingresándolos en la fila de salario. Para calcular el poder adquisitivo de <b>TU SALARIO</b> (para Planta permanente o Contratado), seguí los siguientes pasos:
-<p>1-presioná el botón de <b>Personalizado</b>
-<p>2- cargá el valor de TU SALARIO en la celda/s del mes/es,
-<p>3- elegí la canasta más representativa según la composición de tu hogar, <b>presionando en el botón correspondiente a las canastas.</b> Puede ser la del Hogar 3 (unipersonal) o Hogar 5 bis (familiar), 
-<p>4- presioná <b>Graficar</b> y listo! (fijate que el grafico puede ser de <b>líneas</b> o de <b>barras</b>)
-</div>
-<form>
-<script>
-tabla.ponerTabla();
-tabla.ponerSalarios(datos.contratado);
-tabla.ponerCanasta(datos.canasta3);
-</script>
-</form>
-<div style="width: 700px; height: 170px; ">
-<div class="botones">
-    <div class="lbotones2">
-        <input class="btn2" id="b2" onclick="tabla.salvarPersonalizado(); tabla.personalizado=false; tabla.ponerSalarios(datos.contratado); marcar(&quot;b2&quot;);" type="button" value="Contratado" /> <input class="btn2" id="b3" onclick="tabla.salvarPersonalizado(); tabla.personalizado=false; tabla.ponerSalarios(datos.administrativo); marcar(&quot;b3&quot;);" type="button" value="Planta Adm." /> <input class="btn2" id="b5" onclick="tabla.salvarPersonalizado(); tabla.personalizado=false; tabla.ponerSalarios(datos.profesional); marcar(&quot;b5&quot;);" type="button" value="Planta Prof." /> <input class="btn2" id="b4" onclick="tabla.salvarPersonalizado(); tabla.personalizado=true; tabla.ponerSalarios(datos.vacio); tabla.habilitar(true); marcar(&quot;b4&quot;);" type="button" value="Personalizado" />
-    </div>
-    <div class="lbotones3">
-        <input class="btn" id="c1" onclick="tabla.ponerCanasta(datos.canasta3); marcarC(&quot;c1&quot;);" title="Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda." type="button" value="Canasta 3 + Alq." />
-        <input class="btn" id="c2" onclick="tabla.ponerCanasta(datos.canasta5bis); marcarC(&quot;c2&quot;);" title="Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda." type="button" value="Canasta 5Bis" />
-    </div>
-</div>
-<div class="notas">
-        <div class="notasalario">
-        salario</div>
-        <div class="notacanasta">
-        canasta</div>
-</div>
-</div>
-<div class="series">
-    <input class="btn" onclick="graficarIndicado();" type="button" value="Graficar" /> <input type="radio" name="selgraf" value="pocentual" checked> % de la canasta <input type="radio" name="selgraf" value="absoluta"> salario - canasta
-</div>
-<div class="botones-tg">
-    <a class="tipografico" href="https://www.blogger.com/blogger.g?blogID=4965291061104686328#" id="lineas" onclick="marcarTipo('lineas');graficarIndicado();return false;" title="Grafico de lineas">Lineas</a> <a class="tipografico" href="https://www.blogger.com/blogger.g?blogID=4965291061104686328#" id="barras" onclick="marcarTipo('barras');graficarIndicado();return false;" title="Grafico de barras">Barras</a>
-</div>
-<div class="chartWithOverlay">
-<div class="grafico" id="GraficoGoogleChart-ejemplo-1" style="height: 400px; width: 600px;">
-</div>
-<div class="overlay">
-    <div style="font-family:'Arial'; font-size: 18px;">Enero 2015 : incluye suma de $2000 pagada por única vez</div>
-</div>
-</div>
-<div id="descargar_png">
-</div>
-<script>
-marcar("b2");
-marcarC("c1");
-marcarTipo('lineas');
-</script>
-</div>
+</div> <!-- l0sd3st3rr4d0s -->
 </body>
 </html>
