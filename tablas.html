@@ -158,13 +158,14 @@ body{
 <div class="titulo">
 Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
 <div class="instrucciones">
-<p>Selecciona un set de datos para salarios, otro para canasta y presiona "Graficar".
+<p>Selecciona un set de datos para salarios, otro para canasta y el gráfico se actualizará.
 <p>Podes obtener el gráfico a partir de salarios ya cargados de contratados o de planta permanente (casos testigos).
 <p>También podes probar con tus propios datos, ingresándolos en la fila de salario. Para calcular el poder adquisitivo de <b>TU SALARIO</b> (para Planta permanente o Contratado), seguí los siguientes pasos:
 <p>1-presioná el botón de <b>Personalizado</b>
 <p>2- cargá el valor de TU SALARIO en la celda/s del mes/es,
 <p>3- elegí la canasta más representativa según la composición de tu hogar, <b>presionando en el botón correspondiente a las canastas.</b> Puede ser la del Hogar 3 (unipersonal) o Hogar 5 bis (familiar), 
-<p>4- presioná <b>Graficar</b> y listo! (fijate que el grafico puede ser de <b>líneas</b> o de <b>barras</b>)
+<p>4- selecciona si queres el gráfico de <b>% de la canasta</b> o preferis <b>salario - canasta</b> para compararlos. (fijate que el grafico puede ser de <b>líneas</b> o de <b>barras</b>)
+<p>5- con <b>Descargar gráfico</b> abris la imagen en una pestaña y podes copiarlo a un documento 
 </div>
 <form>
 <div id="tabla"></div>
@@ -229,7 +230,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
             );
             var chart_div = document.getElementById('descargar_png');
             google.visualization.events.addListener(grafico, 'ready', function () {
-                chart_div.innerHTML = '<a class="tipografico" href="' + grafico.getImageURI() + '" id="lineas" title="Descargar archivo" target="_blank">Descargar grafico</a>';
+                chart_div.innerHTML = '<a class="tipografico" href="' + grafico.getImageURI() + '" id="lineas" title="Descargar grafico" target="_blank">Descargar grafico</a>';
             });
             grafico.draw(data, options);
         }
