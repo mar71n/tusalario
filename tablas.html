@@ -53,7 +53,8 @@ body{
     //margin-left: 30px;
     border-radius: 5px;
     background-color: #CC6600;
-    width: 400px; height: 50px;
+    max-width: 400px;
+    height: 50px;
     color: #000000;
 }
 .notacanasta{
@@ -63,7 +64,8 @@ body{
     margin-top: 10px;
     border-radius: 5px;
     background-color: #99CC66;
-    width: 400px; height: 90px;
+    max-width: 400px;
+    height: 90px;
     color: #000000;
 }
 .grafico{
@@ -71,7 +73,7 @@ body{
 .notas{
     margin-top: 0px;
     float:left;
-    width: 420px;
+    max-width: 420px;
     height: 160px;
     display: inline;
     overflow: hidden;
@@ -172,7 +174,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
 <div id="salarios"></div>
 <div id="canastas"></div>
 </form>
-<div style="width: 700px; height: 170px; ">
+<div style="max-width: 700px; height: 170px; ">
 <div class="botones">
     <div class="lbotones2">
         <input class="btn2" id="b2" onclick="todo.tabla.salvarPersonalizado(); todo.tabla.personalizado=false; todo.tabla.ponerSalarios(todo.datos.contratado); todo.marcar(&quot;b2&quot;);" type="button" value="Contratado" /> <input class="btn2" id="b3" onclick="todo.tabla.salvarPersonalizado(); todo.tabla.personalizado=false; todo.tabla.ponerSalarios(todo.datos.administrativo); todo.marcar(&quot;b3&quot;);" type="button" value="Planta Adm." /> <input class="btn2" id="b5" onclick="todo.tabla.salvarPersonalizado(); todo.tabla.personalizado=false; todo.tabla.ponerSalarios(todo.datos.profesional); todo.marcar(&quot;b5&quot;);" type="button" value="Planta Prof." /> <input class="btn2" id="b4" onclick="todo.tabla.salvarPersonalizado(); todo.tabla.personalizado=true; todo.tabla.ponerSalarios(todo.datos.vacio); todo.tabla.habilitar(true); todo.marcar(&quot;b4&quot;);" type="button" value="Personalizado" />
@@ -230,7 +232,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
             );
             var chart_div = document.getElementById('descargar_png');
             google.visualization.events.addListener(grafico, 'ready', function () {
-                chart_div.innerHTML = '<a class="tipografico" href="' + grafico.getImageURI() + '" id="lineas" title="Descargar grafico" target="_blank">Descargar grafico</a>';
+                chart_div.innerHTML = '<a class="tipografico" href="' + grafico.getImageURI() + '" id="lineas" title="Descargar grafico" target="_blank"><b>Descargar grafico</b></a>';
             });
             grafico.draw(data, options);
         }
