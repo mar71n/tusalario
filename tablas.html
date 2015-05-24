@@ -189,7 +189,8 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
 </div>
 </div>
 <div class="series">
-    <input class="btn" onclick="todo.graficarIndicado();" type="button" value="Graficar" /> <input type="radio" name="selgraf" value="pocentual" checked> % de la canasta <input type="radio" name="selgraf" value="absoluta"> salario - canasta
+    <input type="radio" onclick="todo.graficarIndicado();" name="selgraf" value="pocentual" checked> % de la canasta
+    <input type="radio" onclick="todo.graficarIndicado();" name="selgraf" value="absoluta"> salario - canasta
 </div>
 <div class="botones-tg">
     <div class="tipografico" id="lineas" onclick="todo.marcarTipo('lineas');todo.graficarIndicado();return false;" title="Grafico de lineas" style="display:inline">Lineas</div> 
