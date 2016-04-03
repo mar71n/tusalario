@@ -143,13 +143,13 @@ body{
     width: 52px;
     z-index : 1000;
 }
-.fila1, .fila3, .fila5{
+.fila1, .fila3, .fila5, .fila7{
     background-color: #99CC66;
 }
-.fila2, .fila4{
+.fila2, .fila4, .fila6{
     margin-top: 10px;
 }
-.fila0, .fila2, .fila4{
+.fila0, .fila2, .fila4, .fila6{
     background-color: #CC6600;
 }
 </style>
@@ -203,7 +203,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
 <div class="grafico" id="GraficoGoogleChart-ejemplo-1" style="height: 400px; width: 600px;">
 </div>
 <div class="overlay">
-    <div style="font-family:'Arial'; font-size: 18px;">Enero 2015 : incluye suma de $2000 pagada por única vez</div>
+    <div style="font-family:'Arial'; font-size: 16px;">Enero - Febrero 2016 : incluye suma de $2500 pagada por única vez</div>
 </div>
 </div>
 <div id="descargar_png">
@@ -243,7 +243,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
    tabla : (function(){
    //privada
         var columnas = 12;
-        var filas = 6;
+        var filas = 8;
         var _meses=["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SET","OCT","NOV","DIC","ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SET","OCT","NOV","DIC"];
         var meses=[
             new Date(2013,00),new Date(2013,01),new Date(2013,02),new Date(2013,03),new Date(2013,04),new Date(2013,05),
@@ -251,7 +251,9 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
             new Date(2014,00),new Date(2014,01),new Date(2014,02),new Date(2014,03),new Date(2014,04),new Date(2014,05),
             new Date(2014,06),new Date(2014,07),new Date(2014,08),new Date(2014,09),new Date(2014,10),new Date(2014,11),
             new Date(2015,00),new Date(2015,01),new Date(2015,02),new Date(2015,03),new Date(2015,04),new Date(2015,05),
-            new Date(2015,06),new Date(2015,07),new Date(2015,08),new Date(2015,09),new Date(2015,10),new Date(2015,11)
+            new Date(2015,06),new Date(2015,07),new Date(2015,08),new Date(2015,09),new Date(2015,10),new Date(2015,11),
+            new Date(2016,00),new Date(2016,01),new Date(2016,02),new Date(2016,03),new Date(2016,04),new Date(2016,05),
+            new Date(2016,06),new Date(2016,07),new Date(2016,08),new Date(2016,09),new Date(2016,10),new Date(2016,11)
             ];
         function ponerFila(lindatos,fila){
             fila = document.getElementsByClassName(fila);
@@ -262,13 +264,17 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
    //publica
    return {
         personalizado : false,
-        dpersonalizado : [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null, null,null,null,null,null,null,null,null,null,null,null,null],
+        dpersonalizado : [null,null,null,null,null,null,null,null,null,null,null,null,
+                          null,null,null,null,null,null,null,null,null,null,null,null,
+                          null,null,null,null,null,null,null,null,null,null,null,null,
+                          null,null,null,null,null,null,null,null,null,null,null,null],
         salvarPersonalizado: function(){
             if (this.personalizado == true){
                 for(j=0; j<12; j++){
                     this.dpersonalizado[j] = parseInt(fila0[j].value) > 0 ? parseInt(fila0[j].value) : null;
                     this.dpersonalizado[j+12] = parseInt(fila2[j].value) > 0 ? parseInt(fila2[j].value) : null;
                     this.dpersonalizado[j+24] = parseInt(fila4[j].value) > 0 ? parseInt(fila4[j].value) : null;
+                    this.dpersonalizado[j+36] = parseInt(fila4[j].value) > 0 ? parseInt(fila4[j].value) : null;
                 }
             }
         },
@@ -276,10 +282,12 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
             fila0 = document.getElementsByClassName("fila0");
             fila2 = document.getElementsByClassName("fila2");
             fila4 = document.getElementsByClassName("fila4");
+            fila6 = document.getElementsByClassName("fila6");
             for(j=0; j<12; j++){
                 fila0[j].disabled = !sino;
                 fila2[j].disabled = !sino;
                 fila4[j].disabled = !sino;
+                fila6[j].disabled = !sino;
             }
         },
         ponerCanasta: function(canasta){
@@ -288,6 +296,8 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
             ponerFila(canasta, "fila3");
             canasta = canasta.slice(12);
             ponerFila(canasta, "fila5");
+            canasta = canasta.slice(12);
+            ponerFila(canasta, "fila7");
         },
         ponerSalarios: function(salarios){
             if (this.personalizado == true){
@@ -299,6 +309,9 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
             ponerFila(salarios, "fila2");
             salarios = salarios.slice(12);
             ponerFila(salarios, "fila4");
+            salarios = salarios.slice(12);
+            ponerFila(salarios, "fila6");
+            salarios = salarios.slice(12);
         },
         ponerTabla: function (){
             var laTabla = '';
@@ -315,7 +328,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
             }
             primerfila = primerfila + "</th></tr>";
             laTabla = '<table >' + primerfila + laTabla + '</table>';
-            laTabla = '<table> <tr><td><div><b> 2013</b></div><div>Salario:</div><div>Canasta:</div><div><b>  2014</b></div><div>Salario:</div><div>Canasta:</div><div><b> 2015</b></div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
+            laTabla = '<table> <tr><td><div><b> 2013</b></div><div>Salario:</div><div>Canasta:</div><div><b>  2014</b></div><div>Salario:</div><div>Canasta:</div><div> <b>2015</b></div><div>Salario:</div><div>Canasta:</div><div><b>  2016</b></div><div>Salario:</div><div>Canasta:</div></td><td>' + laTabla + '</td></tr></table>';
             //document.write(laTabla);
             document.getElementById("tabla").innerHTML = laTabla;
         },
@@ -323,7 +336,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
             var dataA = [];
                 var filaF=[[{label:'Mes', id:'mes', type:'date'}, {label:'% de la canasta', id:'porcien',type:'number'}]];
                 var m = 0;
-                for(j=0; j<6; j=j+2){
+                for(j=0; j<8; j=j+2){
                    for(k = 1 ; k<=columnas; k++){
                        valor = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[j].value) /parseInt(document.getElementsByClassName("columna"+k)[j+1].value)* 100).toFixed(2));
                        filaF.push([meses[k-1+m], valor]);
@@ -337,7 +350,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
             var dataA = [];
                 var filaF=[[{label:'Mes', id:'mes', type:'date'}, {label:'Salario', id:'salario',type:'number'}, {label:'Canasta', id:'canasta',type:'number'}]];
                 var m = 0;
-                for(j=0; j<6; j=j+2){ 
+                for(j=0; j<8; j=j+2){ 
                    for(k=1; k<=columnas; k++){
                        valor = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[j].value) ).toFixed(2));
                        valor2 = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[j+1].value) ).toFixed(2));
@@ -357,22 +370,28 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
    return {
         vacio: [null,null,null,null,null,null,null,null,null,null,null,null,
                 null,null,null,null,null,null,null,null,null,null,null,null,
+                null,null,null,null,null,null,null,null,null,null,null,null,
                 null,null,null,null,null,null,null,null,null,null,null,null],
         canasta3: [3207, 3236, 3290, 3328, 3373, 3430, 3526, 3610, 3680, 3751, 3824, 3899,
                    4036, 4187, 4304, 4432, 4550, 4664, 4782, 4914, 5017, 5101, 5211, 5282,
-                   5389, 5450, 5524, 5633, 5800, 5879, 6051, 6181, 6330, 6452, 6583, 6764],
+                   5389, 5450, 5524, 5633, 5800, 5879, 6051, 6181, 6330, 6452, 6583, 6764,
+                      6994,7268,null,null,null,null,null,null,null,null,null,null],
         canasta5bis: [7317, 7377, 7521, 7644, 7752, 7902, 8144, 8351, 8534, 8745, 8905, 9087,
                       9378, 9802, 10117, 10454, 10711, 10943, 11148, 11421, 11674, 11877, 12122, 12282,
-                      12527, 12655, 12871, 13239, 13602, 13753, 14095, 14428, 14752, 14967, 15244, 15739],
+                      12527, 12655, 12871, 13239, 13602, 13753, 14095, 14428, 14752, 14967, 15244, 15739,
+                      16318,16871,null,null,null,null,null,null,null,null,null,null],
         contratado: [4400, 4400, 4400, 4400, 4400, 5260, 5260, 5260, 5260, 5260, 5260, 5260,
                      6522, 6522, 6522, 6522, 6522, 6522, 7175, 7175, 7175, 7175, 7175, 7175,
-                     7677, 7677, 7677, 8253, 8253, 8253, 8830, 8830, 8830, 9272, 9272, 9272],
+                     7677, 7677, 7677, 8253, 8253, 8253, 8830, 8830, 8830, 9272, 9272, 9272,
+                      10119,10119,10119,null,null,null,null,null,null,null,null,null],
         administrativo: [6721, 6721, 6721, 6721, 7221, 7221, 7221, 7821, 7821, 7821, 7821, 7821,
                          8821, 8621, 8621, 9197, 9197,9197, 9197, 9627, 9627, 9627, 10228, 11819,
-                         13819,11819,11819,13560,13560,13560,13586,13586,15558,15584,16280, 16280],
+                         13819,11819,11819,13560,13560,13560,13586,13586,15558,15584,16280, 16280,
+                      null,null,null,null,null,null,null,null,null,null,null,null],
         profesional: [8085, 8085, 8085, 8085, 8585, 8585, 8585, 9185, 9185, 9185, 9185, 9185,
                      10185, 9985, 9985, 10783, 10783, 10783, 10783, 11283, 11283, 11283, 11983, 13627,
-                     15627,13627,13627,15638,15638,15638,15664, 15664, 17944, 17970, 18774, 18774]
+                     15627,13627,13627,15638,15638,15638,15664, 15664, 17944, 17970, 18774, 18774,
+                      null,null,null,null,null,null,null,null,null,null,null,null]
    };
    })(),
    ponerComentario: function(){
