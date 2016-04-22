@@ -192,8 +192,8 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
 </div>
 </div>
 <div class="series">
-    <input type="radio" onclick="todo.graficarIndicado();" name="selgraf" value="pocentual" checked> % de la canasta
-    <input type="radio" onclick="todo.graficarIndicado();" name="selgraf" value="absoluta"> salario - canasta
+    <input type="radio" onclick="todo.graficarIndicado();" name="selgraf" value="pocentual"> % de la canasta
+    <input type="radio" onclick="todo.graficarIndicado();" name="selgraf" value="absoluta" checked> salario - canasta
 </div>
 <div class="botones-tg">
     <div class="tipografico" id="lineas" onclick="todo.marcarTipo('lineas');todo.graficarIndicado();return false;" title="Grafico de lineas" style="display:inline">Lineas</div> 
@@ -454,12 +454,13 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
    },
    armar : function(){
                       this.tabla.ponerTabla();
-                      this.tabla.ponerSalarios(this.datos.contratado);
-                      this.tabla.ponerCanasta(this.datos.canasta3);
-                      this.marcar("b2");
-                      this.marcarC("c1");
+                      this.tabla.ponerSalarios(this.datos.administrativo);
+                      this.tabla.ponerCanasta(this.datos.canasta5bis);
+                      this.marcar("b3");
+                      this.marcarC("c2");
                       this.marcarTipo('lineas');
-                      this.grafico.dibujarGrafico("LineChart",this.tabla.generarData()[0], this.options_linea);
+                      //this.grafico.dibujarGrafico("LineChart",this.tabla.generarData()[0], this.options_linea);
+                      this.graficarIndicado();
                       }
 
    }};
