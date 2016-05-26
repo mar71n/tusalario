@@ -210,6 +210,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
 </div>
 </div> <!-- tusalario      -->
 <script src="https://www.google.com/jsapi" type="text/javascript"></script> 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript">
    google.load("visualization", "1", {packages:["corechart"]});
    google.setOnLoadCallback(function(){
@@ -464,14 +465,14 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
                       }
 
    }};
+   $( document ).ready(function() {
+       document.getElementById("esperando").style.display="none";
+       document.getElementById("tusalario").style.display="block";
+       todo = cargartodo();
+       todo.armar();
+   });
 </script>
 </div> <!-- l0sd3st3rr4d0s -->
 <script src="phonegap.js"></script>
-<script>
-   document.getElementById("esperando").style.display="none";
-   document.getElementById("tusalario").style.display="block";
-   todo = cargartodo();
-   todo.armar();
-</script>
 </body>
 </html>
