@@ -14,7 +14,7 @@
     font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;  
     font-size: 14px;  
     line-height: 11.42857143;
-    border-radius: 20px;
+    border-radius: 20px;    
 }
 .instrucciones{
     padding: 15px;
@@ -213,12 +213,12 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script type="text/javascript">
    google.load("visualization", "1", {packages:["corechart"]});
-   google.setOnLoadCallback(function(){
-                                       document.getElementById("esperando").style.display="none";
-                                       document.getElementById("tusalario").style.display="block";
-                                       todo = cargartodo();
-                                       todo.armar();
-                                       });
+   // google.setOnLoadCallback(function(){
+   //                                     document.getElementById("esperando").style.display="none";
+   //                                     document.getElementById("tusalario").style.display="block";
+   //                                     todo = cargartodo();
+   //                                     todo.armar();
+   //                                     });
    function cargartodo(){
    return{
    //var grafico = {};
@@ -384,7 +384,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
         contratado: [4400, 4400, 4400, 4400, 4400, 5260, 5260, 5260, 5260, 5260, 5260, 5260,
                      6522, 6522, 6522, 6522, 6522, 6522, 7175, 7175, 7175, 7175, 7175, 7175,
                      7677, 7677, 7677, 8253, 8253, 8253, 8830, 8830, 8830, 9272, 9272, 9272,
-                      10119,10119,10119,10861,10861,10861,null,null,null,null,null,null],
+                      10200,10200,10200,11117,11117,11117,12007,12007,12007,12847,12847,12847],
         administrativo: [6721, 6721, 6721, 6721, 7221, 7221, 7221, 7821, 7821, 7821, 7821, 7821,
                          8821, 8621, 8621, 9197, 9197,9197, 9197, 9627, 9627, 9627, 10228, 11819,
                          13819,11819,11819,13560,13560,13560,13586,13586,15558,15584,16280, 16280,
