@@ -8,13 +8,13 @@
     max-width:700px;
     background-color: #555;
     box-sizing: border-box;
-    color: #fff; 
-    text-align: center; 
+    color: #fff;
+    text-align: center;
     text-shadow: 0 1px 3px ;
-    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;  
-    font-size: 14px;  
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 14px;
     line-height: 11.42857143;
-    border-radius: 20px;    
+    border-radius: 20px;
 }
 .instrucciones{
     padding: 15px;
@@ -165,9 +165,9 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
 <p>También podes probar con tus propios datos, ingresándolos en la fila de salario. Para calcular el poder adquisitivo de <b>TU SALARIO</b> (para Planta permanente o Contratado), seguí los siguientes pasos:
 <p>1-presioná el botón de <b>Personalizado</b>
 <p>2- cargá el valor de TU SALARIO en la celda/s del mes/es,
-<p>3- elegí la canasta más representativa según la composición de tu hogar, <b>presionando en el botón correspondiente a las canastas.</b> Puede ser la del Hogar 3 (unipersonal) o Hogar 5 bis (familiar), 
+<p>3- elegí la canasta más representativa según la composición de tu hogar, <b>presionando en el botón correspondiente a las canastas.</b> Puede ser la del Hogar 3 (unipersonal) o Hogar 5 bis (familiar),
 <p>4- selecciona si queres el gráfico de <b>% de la canasta</b> o preferis <b>salario - canasta</b> para compararlos. (fijate que el grafico puede ser de <b>líneas</b> o de <b>barras</b>)
-<p>5- con <b>Descargar gráfico</b> abris la imagen en una pestaña y podes copiarlo a un documento 
+<p>5- con <b>Descargar gráfico</b> abris la imagen en una pestaña y podes copiarlo a un documento
 </div>
 <form>
 <div id="tabla"></div>
@@ -196,7 +196,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
     <input type="radio" onclick="todo.graficarIndicado();" name="selgraf" value="absoluta" checked> salario - canasta
 </div>
 <div class="botones-tg">
-    <div class="tipografico" id="lineas" onclick="todo.marcarTipo('lineas');todo.graficarIndicado();return false;" title="Grafico de lineas" style="display:inline">Lineas</div> 
+    <div class="tipografico" id="lineas" onclick="todo.marcarTipo('lineas');todo.graficarIndicado();return false;" title="Grafico de lineas" style="display:inline">Lineas</div>
     <div class="tipografico" id="barras" onclick="todo.marcarTipo('barras');todo.graficarIndicado();return false;" title="Grafico de barras" style="display:inline">Barras</div>
 </div>
 <div class="chartWithOverlay">
@@ -209,7 +209,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
 <div id="descargar_png">
 </div>
 </div> <!-- tusalario      -->
-<script src="https://www.google.com/jsapi" type="text/javascript"></script> 
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 <script type="text/javascript">
    google.load("visualization", "1", {packages:["corechart"]});
    google.setOnLoadCallback(function(){
@@ -350,7 +350,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
             var dataA = [];
                 var filaF=[[{label:'Mes', id:'mes', type:'date'}, {label:'Salario', id:'salario',type:'number'}, {label:'Canasta', id:'canasta',type:'number'}]];
                 var m = 0;
-                for(j=0; j<8; j=j+2){ 
+                for(j=0; j<8; j=j+2){
                    for(k=1; k<=columnas; k++){
                        valor = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[j].value) ).toFixed(2));
                        valor2 = parseFloat((parseInt(document.getElementsByClassName("columna"+k)[j+1].value) ).toFixed(2));
