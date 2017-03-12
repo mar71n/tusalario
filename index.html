@@ -268,7 +268,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
      datat.addRows(canasta5bis);
      var tablet = new google.visualization.Table(document.getElementById('table_div'));
 
-     tablet.draw(datat, {showRowNumber: false, width:'700px',  height:'300px'});
+     tablet.draw(datat, {showRowNumber: false, width:'700px',  height:'300px', sort:'disable'});
    }
    google.setOnLoadCallback(function(){
                                        document.getElementById("esperando").style.display="none";
