@@ -380,6 +380,8 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
    sacarComentario: function(){
        document.getElementsByClassName("overlay")[0].style.visibility = "hidden";
    },
+   canasta: "",
+   revista: "",
    marcar: function(boton){
        document.getElementById("b2").style.backgroundColor = "";
        document.getElementById("b3").style.backgroundColor = "";
@@ -387,9 +389,9 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
        //document.getElementById("b4").style.backgroundColor = "";
        document.getElementById(boton).style.backgroundColor = "#CC6600";
        switch(boton){
-           case "b2": document.getElementsByClassName("notasalario")[0].innerHTML = "Salario testigo de contratado";this.sacarComentario();break;
-           case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";this.ponerComentario();break;
-           case "b5": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";this.ponerComentario();break;
+           case "b2": document.getElementsByClassName("notasalario")[0].innerHTML = "Salario testigo de contratado"; this.revista="contratado"; break;
+           case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación"; this.revista="administrativo"; break;
+           case "b5": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación"; this.revista="profesional"; break;
            //case "b4": document.getElementsByClassName("notasalario")[0].innerHTML = "Completa con tus datos y grafica.";this.sacarComentario();break;
        }
        this.graficarIndicado();
@@ -399,8 +401,8 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
        document.getElementById("c2").style.backgroundColor = "";
        document.getElementById(boton).style.backgroundColor = "#99CC66";
        switch(boton){
-           case "c1": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 3 + alquiler del Hogar 5:</b> hogar unipersonal de un varón de 25 años, activo + alquiler del Hogar 5 (matrimonio de dos adultos mayores de 25 años, activos, sin hijos).";break;
-           case "c2": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 5 bis:</b> Matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.";break;
+           case "c1": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 3 + alquiler del Hogar 5:</b> hogar unipersonal de un varón de 25 años, activo + alquiler del Hogar 5 (matrimonio de dos adultos mayores de 25 años, activos, sin hijos)."; this.canasta="hogar3"; break;
+           case "c2": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 5 bis:</b> Matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda."; this.canasta="hogar5bis"; break;
        }
        this.graficarIndicado();
    },
@@ -442,12 +444,24 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
    },
    graficarIndicado: function(){
        // var losdatos = this.tabla.generarData()[0];
-       var datos_porcen = this.generarDataPorcen(this.datos.administrativo, this.datos.canasta5bis);
-       var datos_salcan = this.generarDataSalVsCan(this.datos.administrativo, this.datos.canasta5bis);
+       var data_canasta = this.datos.canasta5bis;
+       switch(this.canasta){
+           case "hogar3": data_canasta = this.datos.canasta3; break;
+           case "hogar5bis": data_canasta = this.datos.canasta5bis; break;
+       }
+       var data_revista = this.datos.administrativo;
+       switch(this.revista){
+           case "contratado": data_revista = this.datos.contratado; break;
+           case "administrativo": data_revista = this.datos.administrativo; break;
+           case "profesional": data_revista = this.datos.profesional; break;
+       }
+       
 
        if (document.getElementsByName("selgraf")[0].checked == true){
+           var datos_porcen = this.generarDataPorcen(data_revista, data_canasta);
            losdatos = datos_porcen[0]; //this.tabla.generarData()[0];
        } else {
+           var datos_salcan = this.generarDataSalVsCan(data_revista, data_canasta);
            losdatos = datos_salcan[0]; //this.tabla.generarData2()[0];
        }
        if (document.getElementById("lineas").style.backgroundColor !== ""){
