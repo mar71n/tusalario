@@ -543,21 +543,33 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
    generarDataPorcen : function(dataSalario, dataCanasta){
        var datos_porcen = [];
        var filaFp=[[{label:'Mes', id:'mes', type:'date'}, {label:'% de la canasta', id:'porcien',type:'number'}]];
-       for (j=0 ; j< this.datos.administrativo.length; j++){
-           valor = dataSalario[j] / dataCanasta[j] * 100
+       for (j=0 ; j< dataSalario.length; j++){
+           valor = dataSalario[j] / dataCanasta[j] * 100;
            filaFp.push([this.datos.meses[j], valor]);
        }
        datos_porcen.push(filaFp);
        return datos_porcen;
    },
+   generarDataSalVsCan : function(dataSalario, dataCanasta){
+       var datos_salcan = [];
+       var filaFv=[[{label:'Mes', id:'mes', type:'date'}, {label:'Salario', id:'salario',type:'number'}, {label:'Canasta', id:'canasta',type:'number'}]];
+       for (j=0 ; j< dataSalario.length; j++){
+           salario = dataSalario[j];
+           canasta = dataCanasta[j];
+           filaFv.push([this.datos.meses[j], salario, canasta]);
+       }
+       datos_salcan.push(filaFv);
+       return datos_salcan;
+   },
    graficarIndicado: function(){
        var losdatos = this.tabla.generarData()[0];
        var datos_porcen = this.generarDataPorcen(this.datos.administrativo, this.datos.canasta5bis);
+       var datos_salcan = this.generarDataSalVsCan(this.datos.administrativo, this.datos.canasta5bis);
 
        if (document.getElementsByName("selgraf")[0].checked == true){
            losdatos = datos_porcen[0]; //this.tabla.generarData()[0];
        } else {
-           losdatos = this.tabla.generarData2()[0];
+           losdatos = datos_salcan[0]; //this.tabla.generarData2()[0];
        }
        if (document.getElementById("lineas").style.backgroundColor !== ""){
            this.grafico.dibujarGrafico("LineChart",losdatos, this.options_linea);
