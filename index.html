@@ -171,7 +171,11 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
 </div>
 <form>
 <div id="tabla"></div>
-<div id="table_div"></div>
+<div id="table1_div"></div>
+<div id="table2_div"></div>
+<div id="table3_div"></div>
+<div id="table4_div"></div>
+<div id="table5_div"></div>
 <div id="salarios"></div>
 <div id="canastas"></div>
 </form>
@@ -247,28 +251,58 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
                 [{v:2015,f:'2015'},{v:12527,f:'12527'},{v:12655,f:'12655'},{v:12871,f:'12871'},{v:13239,f:'13239'},{v:13602,f:'13602'},{v:13753,f:'13753'},{v:14095,f:'14095'},{v:14428,f:'14428'},{v:14752,f:'14752'},{v:14967,f:'14967'},{v:15244,f:'15244'},{v:15739,f:'15739'}],
                 [{v:2016,f:'2016'},{v:16318,f:'16318'},{v:16871,f:'16871'},{v:17531,f:'17531'},{v:18298,f:'18298'},{v:19222,f:'19222'},{v:19899,f:'19899'},{v:20368,f:'20368'},{v:20445,f:'20445'},{v:20767,f:'20767'},{v:21203,f:'21203'},{v:21579,f:'21579'},{v:21746,f:'21746'}]
             ];
-     var datat = new google.visualization.DataTable();
-     datat.addColumn('number', 'Año');
-     datat.addColumn('number', 'Ene');
-     datat.addColumn('number', 'Feb');
-     datat.addColumn('number', 'Mar');
-     datat.addColumn('number', 'Abr');
-     datat.addColumn('number', 'May');
-     datat.addColumn('number', 'Jun');
-     datat.addColumn('number', 'Jul');
-     datat.addColumn('number', 'Ago');
-     datat.addColumn('number', 'Sep');
-     datat.addColumn('number', 'Oct');
-     datat.addColumn('number', 'Nov');
-     datat.addColumn('number', 'Dic');
-     datat.addRows(administrativo);
-     datat.addRows(contratado);
-     datat.addRows(profesional);
-     datat.addRows(canasta3);
-     datat.addRows(canasta5bis);
-     var tablet = new google.visualization.Table(document.getElementById('table_div'));
+     var datat1 = new google.visualization.DataTable();
+     datat1.addColumn('number', 'Año'); datat1.addColumn('number', 'Ene'); datat1.addColumn('number', 'Feb');
+     datat1.addColumn('number', 'Mar'); datat1.addColumn('number', 'Abr'); datat1.addColumn('number', 'May');
+     datat1.addColumn('number', 'Jun'); datat1.addColumn('number', 'Jul'); datat1.addColumn('number', 'Ago');
+     datat1.addColumn('number', 'Sep'); datat1.addColumn('number', 'Oct'); datat1.addColumn('number', 'Nov');
+     datat1.addColumn('number', 'Dic');
+     var datat2 = new google.visualization.DataTable();
+     datat2.addColumn('number', 'Año'); datat2.addColumn('number', 'Ene'); datat2.addColumn('number', 'Feb');
+     datat2.addColumn('number', 'Mar'); datat2.addColumn('number', 'Abr'); datat2.addColumn('number', 'May');
+     datat2.addColumn('number', 'Jun'); datat2.addColumn('number', 'Jul'); datat2.addColumn('number', 'Ago');
+     datat2.addColumn('number', 'Sep'); datat2.addColumn('number', 'Oct'); datat2.addColumn('number', 'Nov');
+     datat2.addColumn('number', 'Dic');
+     var datat3 = new google.visualization.DataTable();
+     datat3.addColumn('number', 'Año'); datat3.addColumn('number', 'Ene'); datat3.addColumn('number', 'Feb');
+     datat3.addColumn('number', 'Mar'); datat3.addColumn('number', 'Abr'); datat3.addColumn('number', 'May');
+     datat3.addColumn('number', 'Jun'); datat3.addColumn('number', 'Jul'); datat3.addColumn('number', 'Ago');
+     datat3.addColumn('number', 'Sep'); datat3.addColumn('number', 'Oct'); datat3.addColumn('number', 'Nov');
+     datat3.addColumn('number', 'Dic');
+     var datat4 = new google.visualization.DataTable();
+     datat4.addColumn('number', 'Año'); datat4.addColumn('number', 'Ene'); datat4.addColumn('number', 'Feb');
+     datat4.addColumn('number', 'Mar'); datat4.addColumn('number', 'Abr'); datat4.addColumn('number', 'May');
+     datat4.addColumn('number', 'Jun'); datat4.addColumn('number', 'Jul'); datat4.addColumn('number', 'Ago');
+     datat4.addColumn('number', 'Sep'); datat4.addColumn('number', 'Oct'); datat4.addColumn('number', 'Nov');
+     datat4.addColumn('number', 'Dic');
+     var datat5 = new google.visualization.DataTable();
+     datat5.addColumn('number', 'Año'); datat5.addColumn('number', 'Ene'); datat5.addColumn('number', 'Feb');
+     datat5.addColumn('number', 'Mar'); datat5.addColumn('number', 'Abr'); datat5.addColumn('number', 'May');
+     datat5.addColumn('number', 'Jun'); datat5.addColumn('number', 'Jul'); datat5.addColumn('number', 'Ago');
+     datat5.addColumn('number', 'Sep'); datat5.addColumn('number', 'Oct'); datat5.addColumn('number', 'Nov');
+     datat5.addColumn('number', 'Dic');
 
-     tablet.draw(datat, {showRowNumber: false, width:'700px',  height:'300px', sort:'disable'});
+     var datat_adm = datat1
+     var datat_pro = datat2
+     var datat_con = datat3
+     var datat_c03 = datat4
+     var datat_c5b = datat5
+     datat_adm.addRows(administrativo);
+     datat_pro.addRows(contratado);
+     datat_con.addRows(profesional);
+     datat_c03.addRows(canasta3);
+     datat_c5b.addRows(canasta5bis);
+     var tablet1 = new google.visualization.Table(document.getElementById('table1_div'));
+     var tablet2 = new google.visualization.Table(document.getElementById('table2_div'));
+     var tablet3 = new google.visualization.Table(document.getElementById('table3_div'));
+     var tablet4 = new google.visualization.Table(document.getElementById('table4_div'));
+     var tablet5 = new google.visualization.Table(document.getElementById('table5_div'));
+
+     tablet1.draw(datat_adm, {showRowNumber: false, width:'700px',  height:'100px', sort:'disable'});
+     tablet2.draw(datat_pro, {showRowNumber: false, width:'700px',  height:'100px', sort:'disable'});
+     tablet3.draw(datat_con, {showRowNumber: false, width:'700px',  height:'100px', sort:'disable'});
+     tablet4.draw(datat_c03, {showRowNumber: false, width:'700px',  height:'100px', sort:'disable'});
+     tablet5.draw(datat_c5b, {showRowNumber: false, width:'700px',  height:'100px', sort:'disable'});
    }
    google.setOnLoadCallback(function(){
                                        document.getElementById("esperando").style.display="none";
