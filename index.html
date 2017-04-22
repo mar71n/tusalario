@@ -171,11 +171,21 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
 </div>
 <form>
 <div id="tabla"></div>
-<div id="table1_div"></div>
-<div id="table2_div"></div>
-<div id="table3_div"></div>
-<div id="table4_div"></div>
-<div id="table5_div"></div>
+<div id="table_adm_div">Administrativo:
+   <div id="table1_div">admin</div>
+</div>
+<div id="table_con_div">Contratado:
+   <div id="table2_div">contratado</div>
+</div>
+<div id="table_pro_div">Profesional:
+   <div id="table3_div">profesional</div>
+</div>
+<div id="table_c03_div">Hogar 3:
+   <div id="table4_div">canasta3</div>
+</div>
+<div id="table_c5b_div">Hogar 5 bis:
+   <div id="table5_div">canasta5bis</div>
+</div>
 <div id="salarios"></div>
 <div id="canastas"></div>
 </form>
@@ -301,11 +311,11 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
      var tablet4 = new google.visualization.Table(document.getElementById('table4_div'));
      var tablet5 = new google.visualization.Table(document.getElementById('table5_div'));
 
-     tablet1.draw(datat_adm, {showRowNumber: false, width:'700px',  height:'100px', sort:'disable'});
-     tablet2.draw(datat_pro, {showRowNumber: false, width:'700px',  height:'100px', sort:'disable'});
-     tablet3.draw(datat_con, {showRowNumber: false, width:'700px',  height:'100px', sort:'disable'});
-     tablet4.draw(datat_c03, {showRowNumber: false, width:'700px',  height:'100px', sort:'disable'});
-     tablet5.draw(datat_c5b, {showRowNumber: false, width:'700px',  height:'100px', sort:'disable'});
+     tablet1.draw(datat_adm, {showRowNumber: false, maxwidth:'700px',  maxheight:'100px', sort:'disable'});
+     tablet2.draw(datat_pro, {showRowNumber: false, maxwidth:'700px',  maxheight:'100px', sort:'disable'});
+     tablet3.draw(datat_con, {showRowNumber: false, maxwidth:'700px',  maxheight:'100px', sort:'disable'});
+     tablet4.draw(datat_c03, {showRowNumber: false, maxwidth:'700px',  maxheight:'100px', sort:'disable'});
+     tablet5.draw(datat_c5b, {showRowNumber: false, maxwidth:'700px',  maxheight:'100px', sort:'disable'});
    }
    google.setOnLoadCallback(function(){
                                        document.getElementById("esperando").style.display="none";
@@ -388,10 +398,22 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
        document.getElementById("b5").style.backgroundColor = "";
        //document.getElementById("b4").style.backgroundColor = "";
        document.getElementById(boton).style.backgroundColor = "#CC6600";
+       document.getElementById("table_adm_div").style.display = "none";
+       document.getElementById("table_con_div").style.display = "none";
+       document.getElementById("table_pro_div").style.display = "none";
        switch(boton){
-           case "b2": document.getElementsByClassName("notasalario")[0].innerHTML = "Salario testigo de contratado"; this.revista="contratado"; break;
-           case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación"; this.revista="administrativo"; break;
-           case "b5": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación"; this.revista="profesional"; break;
+           case "b2": document.getElementsByClassName("notasalario")[0].innerHTML = "Salario testigo de contratado";
+                      this.revista="contratado";
+                      document.getElementById("table_con_div").style.display = "";
+                      break;
+           case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";
+                      this.revista="administrativo";
+                      document.getElementById("table_adm_div").style.display = "";
+                      break;
+           case "b5": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";
+                      this.revista="profesional";
+                      document.getElementById("table_pro_div").style.display = "";
+                      break;
            //case "b4": document.getElementsByClassName("notasalario")[0].innerHTML = "Completa con tus datos y grafica.";this.sacarComentario();break;
        }
        this.graficarIndicado();
@@ -400,9 +422,17 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
        document.getElementById("c1").style.backgroundColor = "";
        document.getElementById("c2").style.backgroundColor = "";
        document.getElementById(boton).style.backgroundColor = "#99CC66";
+       document.getElementById("table_c03_div").style.display = "none";
+       document.getElementById("table_c5b_div").style.display = "none";
        switch(boton){
-           case "c1": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 3 + alquiler del Hogar 5:</b> hogar unipersonal de un varón de 25 años, activo + alquiler del Hogar 5 (matrimonio de dos adultos mayores de 25 años, activos, sin hijos)."; this.canasta="hogar3"; break;
-           case "c2": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 5 bis:</b> Matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda."; this.canasta="hogar5bis"; break;
+           case "c1": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 3 + alquiler del Hogar 5:</b> hogar unipersonal de un varón de 25 años, activo + alquiler del Hogar 5 (matrimonio de dos adultos mayores de 25 años, activos, sin hijos).";
+                      this.canasta="hogar3";
+                      document.getElementById("table_c03_div").style.display = "";
+                      break;
+           case "c2": document.getElementsByClassName("notacanasta")[0].innerHTML = "<b>Hogar 5 bis:</b> Matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda.";
+                      this.canasta="hogar5bis";
+                      document.getElementById("table_c5b_div").style.display = "";
+                      break;
        }
        this.graficarIndicado();
    },
