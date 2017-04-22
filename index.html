@@ -182,11 +182,14 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
 <div style="max-width: 700px; height: 170px; ">
 <div class="botones">
     <div class="lbotones2">
-        <input class="btn2" id="b2" onclick="todo.tabla.salvarPersonalizado(); todo.tabla.personalizado=false; todo.tabla.ponerSalarios(todo.datos.contratado); todo.marcar(&quot;b2&quot;);" type="button" value="Contratado" /> <input class="btn2" id="b3" onclick="todo.tabla.salvarPersonalizado(); todo.tabla.personalizado=false; todo.tabla.ponerSalarios(todo.datos.administrativo); todo.marcar(&quot;b3&quot;);" type="button" value="Planta Adm." /> <input class="btn2" id="b5" onclick="todo.tabla.salvarPersonalizado(); todo.tabla.personalizado=false; todo.tabla.ponerSalarios(todo.datos.profesional); todo.marcar(&quot;b5&quot;);" type="button" value="Planta Prof." /> <input class="btn2" id="b4" onclick="todo.tabla.salvarPersonalizado(); todo.tabla.personalizado=true; todo.tabla.ponerSalarios(todo.datos.vacio); todo.tabla.habilitar(true); todo.marcar(&quot;b4&quot;);" type="button" value="Personalizado" />
+        <input class="btn2" id="b2" onclick="todo.marcar(&quot;b2&quot;);" type="button" value="Contratado" /> 
+        <input class="btn2" id="b3" onclick="todo.marcar(&quot;b3&quot;);" type="button" value="Planta Adm." /> 
+        <input class="btn2" id="b5" onclick="todo.marcar(&quot;b5&quot;);" type="button" value="Planta Prof." /> 
+        <!-- <input class="btn2" id="b4" onclick="todo.tabla.salvarPersonalizado(); todo.tabla.personalizado=true; todo.tabla.ponerSalarios(todo.datos.vacio); todo.tabla.habilitar(true); todo.marcar(&quot;b4&quot;);" type="button" value="Personalizado" /> -->
     </div>
     <div class="lbotones3">
-        <input class="btn" id="c1" onclick="todo.tabla.ponerCanasta(todo.datos.canasta3); todo.marcarC(&quot;c1&quot;);" title="Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda." type="button" value="Canasta 3 + Alq." />
-        <input class="btn" id="c2" onclick="todo.tabla.ponerCanasta(todo.datos.canasta5bis); todo.marcarC(&quot;c2&quot;);" title="Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda." type="button" value="Canasta 5Bis" />
+        <input class="btn" id="c1" onclick="todo.marcarC(&quot;c1&quot;);" title="Hogar 3: hogar unipersonal de un varón de 25 años, activo y propietario de la vivienda." type="button" value="Canasta 3 + Alq." />
+        <input class="btn" id="c2" onclick="todo.marcarC(&quot;c2&quot;);" title="Hogar 5 bis: matrimonio compuesto por una mujer y un varón, ambos de 35 años, activos, con dos hijos varones de 6 y 9 años e inquilinos de la vivienda." type="button" value="Canasta 5Bis" />
     </div>
 </div>
 <div class="notas">
@@ -347,12 +350,12 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
             new Date(2016,0),new Date(2016,1),new Date(2016,2),new Date(2016,3),new Date(2016,4),new Date(2016,5),
             new Date(2016,6),new Date(2016,7),new Date(2016,8),new Date(2016,9),new Date(2016,10),new Date(2016,11)
             ];
-        function ponerFila(lindatos,fila){
+        /*function ponerFila(lindatos,fila){
             fila = document.getElementsByClassName(fila);
             for(j=0; j<12; j++){
                 fila[j].value=lindatos[j];
             }
-        }
+        }*/
    //publica
    return {
         personalizado : false,
@@ -505,13 +508,13 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
        document.getElementById("b2").style.backgroundColor = "";
        document.getElementById("b3").style.backgroundColor = "";
        document.getElementById("b5").style.backgroundColor = "";
-       document.getElementById("b4").style.backgroundColor = "";
+       //document.getElementById("b4").style.backgroundColor = "";
        document.getElementById(boton).style.backgroundColor = "#CC6600";
        switch(boton){
            case "b2": document.getElementsByClassName("notasalario")[0].innerHTML = "Salario testigo de contratado";this.sacarComentario();break;
            case "b3": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Administrativo Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";this.ponerComentario();break;
            case "b5": document.getElementsByClassName("notasalario")[0].innerHTML = "<b>Profesional Nivel 01-TRAMO A</b>, con fondo estimulo de 60% de evaluación";this.ponerComentario();break;
-           case "b4": document.getElementsByClassName("notasalario")[0].innerHTML = "Completa con tus datos y grafica.";this.sacarComentario();break;
+           //case "b4": document.getElementsByClassName("notasalario")[0].innerHTML = "Completa con tus datos y grafica.";this.sacarComentario();break;
        }
        this.graficarIndicado();
    },
@@ -562,7 +565,7 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
        return datos_salcan;
    },
    graficarIndicado: function(){
-       var losdatos = this.tabla.generarData()[0];
+       // var losdatos = this.tabla.generarData()[0];
        var datos_porcen = this.generarDataPorcen(this.datos.administrativo, this.datos.canasta5bis);
        var datos_salcan = this.generarDataSalVsCan(this.datos.administrativo, this.datos.canasta5bis);
 
@@ -578,9 +581,9 @@ Graficá TU SALARIO sobre las Canastas publicadas por la DGEyC</div>
        }
    },
    armar : function(){
-                      this.tabla.ponerTabla();
-                      this.tabla.ponerSalarios(this.datos.administrativo);
-                      this.tabla.ponerCanasta(this.datos.canasta5bis);
+                      // this.tabla.ponerTabla();
+                      //this.tabla.ponerSalarios(this.datos.administrativo);
+                      // this.tabla.ponerCanasta(this.datos.canasta5bis);
                       this.marcar("b3");
                       this.marcarC("c2");
                       this.marcarTipo('lineas');
